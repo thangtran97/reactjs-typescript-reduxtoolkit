@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  backend:
+    image: demo-backend
+    container_name: demo-backend
+    build:
+      context: ./backend/demo
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: demo-frontend
+    container_name: demo-frontend
+    build:
+      context: ./frontend/learning-typescript
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      REACT_APP_API_URL: http://backend:8080
+
+networks:
+  default:
+    external:
+      name: test-network
+
