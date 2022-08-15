@@ -3,7 +3,7 @@ import queryString from "query-string";
 
 const API_URL = process.env.REACT_APP_API_URL
     ? process.env.REACT_APP_API_URL
-    : "http://localhost:8080";
+    : "http://localhost:5000";
 
 const axiosClient = axios.create({
     baseURL: API_URL,
