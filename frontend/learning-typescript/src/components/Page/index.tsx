@@ -35,6 +35,10 @@ const sideBarItems: MenuProps["items"] = [
         label: <Link to={"/videos"}>Videos</Link>,
         key: "videos",
     },
+    {
+        label: <Link to={"/records"}>Records</Link>,
+        key: "records",
+    },
 ];
 
 const Page: React.FC<PropTypes> = props => {

@@ -7,12 +7,9 @@ import logo from "../../logo.svg";
 const HomePage: React.FC = () => (
     <Page
         content={
-            <img
-                style={{ marginLeft: 500, marginTop: 200 }}
-                src={logo}
-                className="App-logo"
-                alt="logo"
-            />
+            <video width="1200" controls>
+                <source src="http://localhost:5000/records/play?name=sample.mp4" type="video/mp4" />
+            </video>
         }
     />
 );

@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify, make_response, send_file
+from flask import Flask, request, jsonify, make_response, send_file, Response
 from flask_cors import CORS
+import os
 import gi
 
 gi.require_version("Gst", "1.0")
@@ -91,9 +92,11 @@ def delete(id):
 
     return make_response(jsonify(response))
 
-@app.route("/videos/<file_name>")
-def live_stream(file_name): 
-    return send_file(file_name)
+@app.route("/files")
+def get_file():
+    directory = request.args.get("directory")
+    file = request.args.get("file")
+    return send_file(directory + "/" + file if directory else file)
 
 @app.route("/<segment>")
 def get_segment(segment): 
@@ -111,7 +114,7 @@ def compositing_and_record(videos):
     command = "compositor name=comp"
     for index, val in enumerate(videos):
         command += ' sink_'+ str(index) + '::xpos=' + str(320*index) + ' sink_'+ str(index) + '::ypos=0 sink_'+ str(index) + '::width=320 sink_'+ str(index) + '::height=240'
-        pipeline_recording = Gst.parse_launch('rtspsrc location="' + val + '" ! decodebin3 ! avenc_mpeg4 ! matroskamux ! filesink location=records/camera' + str(index) + '.mkv')
+        pipeline_recording = Gst.parse_launch('rtspsrc location="' + val + '" ! decodebin3 ! avenc_mpeg4 ! mpegtsmux ! filesink location=records/camera' + str(index) + '.mp4')
         pipeline_recording.set_state(Gst.State.PLAYING)
 
     command += ' ! videoconvert ! x264enc bitrate=20000 ! h264parse ! hlssink2 playlist-root=http://localhost:5000 location=segments/segment.%05d.ts target-duration=1'
@@ -122,6 +125,47 @@ def compositing_and_record(videos):
     pipeline = Gst.parse_launch(command)
     pipeline.set_state(Gst.State.PLAYING)
 
+@app.route("/records")
+def get_all_record():
+    records = []
+    for file in os.listdir("records"):
+        if file.endswith(".mp4"):
+            records.append(file)
+    response = {
+        "success": True,
+        "total": len(records),
+        "data": records
+    }
+    return make_response(jsonify(response))
+
+@app.route("/records/play")
+def play_video():
+    name = request.args.get("name")
+    headers = request.headers
+    start, end = headers["Range"].replace("bytes=", "").split("-")
+    video_path = "records/" + name
+
+    chunk, start, length, file_size = get_chunk(int(start), int(end) if end else end, video_path)
+
+    response = Response(chunk, 206, mimetype='video/mp4', content_type='video/mp4', direct_passthrough=True)
+    response.headers.add('Content-Range', 'bytes {0}-{1}/{2}'.format(start, start + length - 1, file_size))
+    return response
+
+def get_chunk(byte1, byte2, video_path):
+    file_size = os.stat(video_path).st_size
+    start = 0
+    
+    if byte1 < file_size:
+        start = byte1
+    if byte2:
+        length = byte2 + 1 - byte1
+    else:
+        length = file_size - start
+
+    with open(video_path, 'rb') as video:
+        video.seek(start)
+        chunk = video.read(length)
+    return chunk, start, length, file_size
 
 if __name__ == "__main__":
     app.run()
