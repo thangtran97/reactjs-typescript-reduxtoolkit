@@ -114,7 +114,7 @@ def compositing_and_record(videos):
     command = "compositor name=comp"
     for index, val in enumerate(videos):
         command += ' sink_'+ str(index) + '::xpos=' + str(320*index) + ' sink_'+ str(index) + '::ypos=0 sink_'+ str(index) + '::width=320 sink_'+ str(index) + '::height=240'
-        pipeline_recording = Gst.parse_launch('rtspsrc location="' + val + '" ! decodebin3 ! avenc_mpeg4 ! mpegtsmux ! filesink location=records/camera' + str(index) + '.mp4')
+        pipeline_recording = Gst.parse_launch('rtspsrc location=' + val + ' ! application/x-rtp, media=video, encoding-name=H264 ! rtph264depay ! h264parse ! matroskamux ! filesink location=records/camera' + str(index) + '.mkv')
         pipeline_recording.set_state(Gst.State.PLAYING)
 
     command += ' ! videoconvert ! x264enc bitrate=20000 ! h264parse ! hlssink2 playlist-root=http://localhost:5000 location=segments/segment.%05d.ts target-duration=1'
@@ -129,7 +129,7 @@ def compositing_and_record(videos):
 def get_all_record():
     records = []
     for file in os.listdir("records"):
-        if file.endswith(".mp4"):
+        if file.endswith((".mkv", ".mp4")):
             records.append(file)
     response = {
         "success": True,
