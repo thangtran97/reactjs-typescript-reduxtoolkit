@@ -4,8 +4,8 @@ import {
     DeleteVideoResponse,
     EditVideoResponse,
     GetListVideoResponse,
-    GetVideoResponse,
-    VideoInfo,
+    GetVideoResponse, VideoCompositing,
+    VideoInfo
 } from "../types/VideoType";
 
 export const getAll = async () => {
@@ -27,6 +27,10 @@ export const edit = async (video: VideoInfo) => {
     );
 };
 
+export const compositing = async (data: VideoCompositing) => {
+    return await axiosClient.post("/videos/compositing", data);
+};
+
 export const remove = async (id: number) => {
     return await axiosClient.delete<DeleteVideoResponse>(`videos/${id}`);
 };
@@ -37,6 +41,7 @@ const VideoService = {
     create,
     edit,
     remove,
+    compositing,
 };
 
 export default VideoService;

@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import VideoService from "../services/VideoService";
 import {
+    CompositingVideoResponse,
     CreateVideoResponse,
     DeleteVideoResponse,
     EditVideoResponse,
     GetListVideoResponse,
-    GetVideoResponse,
+    GetVideoResponse, VideoCompositing,
     VideoInfo,
-    VideoState,
+    VideoState
 } from "../types/VideoType";
 import { RootState } from "./index";
 
@@ -16,8 +17,9 @@ const initialState: VideoState = {
     isSuccessful: false,
     isCreateModalVisible: false,
     isEditModalVisible: false,
+    isComposited: false,
     values: [],
-    errors: {},
+    errors: {}
 };
 
 export const getAllVideo = createAsyncThunk("videos/getAll", async () => {
@@ -33,13 +35,11 @@ export const getDetailVideo = createAsyncThunk<GetVideoResponse, number>(
     }
 );
 
-export const createVideo = createAsyncThunk<
-    GetListVideoResponse,
+export const createVideo = createAsyncThunk<GetListVideoResponse,
     VideoInfo,
     {
         rejectValue: CreateVideoResponse;
-    }
->("videos/create", async (video, thunkAPI) => {
+    }>("videos/create", async (video, thunkAPI) => {
     let response = await VideoService.create(video);
     if (response.data.success) {
         let getAllResponse = await VideoService.getAll();
@@ -48,13 +48,11 @@ export const createVideo = createAsyncThunk<
     return thunkAPI.rejectWithValue(response.data as CreateVideoResponse);
 });
 
-export const editVideo = createAsyncThunk<
-    GetListVideoResponse,
+export const editVideo = createAsyncThunk<GetListVideoResponse,
     VideoInfo,
     {
         rejectValue: EditVideoResponse;
-    }
->("videos/edit", async (video, thunkAPI) => {
+    }>("videos/edit", async (video, thunkAPI) => {
     let response = await VideoService.edit(video);
     if (response.data.success) {
         let getAllResponse = await VideoService.getAll();
@@ -75,6 +73,15 @@ export const deleteVideo = createAsyncThunk(
     }
 );
 
+export const compositingVideo = createAsyncThunk(
+    "videos/composting",
+    async (data: VideoCompositing, thunkAPI) => {
+        console.log("composting");
+        let response = await VideoService.compositing(data);
+        return response.data as CompositingVideoResponse;
+    }
+);
+
 export const videoSlice = createSlice({
     name: "video",
     initialState,
@@ -84,7 +91,7 @@ export const videoSlice = createSlice({
         },
         setEditVideoModalVisible: (state, action) => {
             state.isEditModalVisible = action.payload;
-        },
+        }
     },
     extraReducers: builder => {
         builder.addCase(getAllVideo.pending, state => {
@@ -155,7 +162,17 @@ export const videoSlice = createSlice({
             state.isLoading = false;
             state.isSuccessful = false;
         });
-    },
+
+        builder.addCase(compositingVideo.pending, state => {
+            state.isLoading = true;
+        });
+
+        builder.addCase(compositingVideo.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccessful = true;
+            state.isComposited = true;
+        });
+    }
 });
 
 export const { setCreateVideoModalVisible, setEditVideoModalVisible } =
@@ -164,6 +181,8 @@ export const { setCreateVideoModalVisible, setEditVideoModalVisible } =
 export const selectIsLoading = (state: RootState) => state.video.isLoading;
 export const selectIsSuccessful = (state: RootState) =>
     state.video.isSuccessful;
+export const selectIsComposited = (state: RootState) =>
+    state.video.isComposited;
 export const selectIsCreateVideoModalVisible = (state: RootState) =>
     state.video.isCreateModalVisible;
 export const selectIsEditVideoModalVisible = (state: RootState) =>

@@ -5,6 +5,10 @@ export interface VideoInfo {
     type: string;
 }
 
+export interface VideoCompositing {
+    videos: String[]
+}
+
 export interface VideoError {
     label?: string;
     url?: string;
@@ -22,6 +26,7 @@ export interface VideoState {
     isSuccessful: boolean;
     isCreateModalVisible: boolean;
     isEditModalVisible: boolean;
+    isComposited: boolean;
     values: VideoInfo[];
     errors: VideoError;
 }
@@ -59,4 +64,8 @@ export interface EditVideoResponse {
 export interface DeleteVideoResponse {
     success: boolean;
     errors: {};
+}
+
+export interface CompositingVideoResponse {
+    success: boolean;
 }
