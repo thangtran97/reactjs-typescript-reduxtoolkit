@@ -6,6 +6,7 @@ import Video from "./pages/Videos";
 import VideoPlayer from "./pages/VideoPlayer";
 import Record from "./pages/Records";
 import RecordPlayer from "./pages/RecordPlayer";
+import Multiview from "./pages/Multiview";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/videos" element={<Video />} />
                 <Route path="/records" element={<Record />} />
+                <Route path="/multiview" element={<Multiview />} />
                 <Route path="/videos/play/:id" element={<VideoPlayer />} />
                 <Route path="/records/play/:name" element={<RecordPlayer />} />
             </Routes>

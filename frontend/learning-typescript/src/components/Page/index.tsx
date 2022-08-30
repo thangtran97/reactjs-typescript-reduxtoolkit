@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import "antd/dist/antd.css";
 import { Layout, Menu, MenuProps } from "antd";
 import { Link } from "react-router-dom";
+import Multiview from "../../pages/Multiview";
 
 const { Header, Content, Sider, Footer } = Layout;
 
@@ -31,6 +32,10 @@ const navBarItems: MenuProps["items"] = [
 ];
 
 const sideBarItems: MenuProps["items"] = [
+    {
+        label: <Link to={"/multiview"}>Multiview</Link>,
+        key: "multiview",
+    },
     {
         label: <Link to={"/videos"}>Videos</Link>,
         key: "videos",
