@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify, make_response, send_file, Response
 from flask_cors import CORS
 import os
+import io
+import base64
+from PIL import Image
 import gi
 
 gi.require_version("Gst", "1.0")
@@ -166,6 +169,27 @@ def get_chunk(byte1, byte2, video_path):
         video.seek(start)
         chunk = video.read(length)
     return chunk, start, length, file_size
+
+@app.route("/images", methods=["POST"])
+def upload_image():
+    data = request.get_json()
+
+    img_string = data["image"].replace('data:image/png;base64,', '')
+    img_data = base64.b64decode(img_string)
+    filename = data["name"]
+
+    with open("images/" + filename + ".png", "wb") as f:
+        f.write(img_data)
+
+    response = {
+        "success": True,
+    }
+
+    return make_response(jsonify(response))
+
+def convert_image_and_save(b64_string, file_name):
+    with open(file_name + ".png", "wb") as fh:
+        fh.write(base64.decodebytes(b64_string.encode()))
 
 if __name__ == "__main__":
     app.run()

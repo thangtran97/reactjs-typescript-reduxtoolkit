@@ -20,6 +20,7 @@
         "@types/videojs-seek-buttons": "^2.1.0",
         "antd": "^4.21.4",
         "axios": "^0.27.2",
+        "html2canvas": "^1.4.1",
         "jsmpeg": "^1.0.0",
         "prettier": "2.7.1",
         "query-string": "^7.1.1",

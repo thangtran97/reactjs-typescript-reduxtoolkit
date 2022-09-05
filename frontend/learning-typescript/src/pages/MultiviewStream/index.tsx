@@ -5,7 +5,7 @@ import Page from "../../components/Page";
 import { Button, Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
-const Multiview: React.FC = () => {
+const MultiviewStream: React.FC = () => {
 
     return (
         <Page
@@ -45,4 +45,4 @@ const Multiview: React.FC = () => {
     );
 };
 
-export default Multiview;
+export default MultiviewStream;
