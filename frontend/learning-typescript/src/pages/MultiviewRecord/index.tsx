@@ -60,6 +60,7 @@ const MultiviewRecord: React.FC = () => {
         if (videoRef.current) {
             setVolume(videoRef.current.volume * 100);
             setPlaybackRate(videoRef.current.playbackRate);
+            setDurationTime(videoRef.current.duration);
             videoRef.current.paused ? setIsPlaying(false) : setIsPlaying(true);
         }
     }, [video1, video2, videoRef]);
@@ -69,10 +70,10 @@ const MultiviewRecord: React.FC = () => {
             <video
                 ref={videoRef}
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px orangered" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onDurationChange={handleDurationChange}
                 onClick={(event) => handleClickVideo1(event)}
             />;
@@ -81,10 +82,10 @@ const MultiviewRecord: React.FC = () => {
         let v2 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo2(event)}
             />;
         setVideo2(v2);
@@ -92,10 +93,10 @@ const MultiviewRecord: React.FC = () => {
         let v3 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo3(event)}
             />;
         setVideo3(v3);
@@ -103,10 +104,10 @@ const MultiviewRecord: React.FC = () => {
         let v4 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo4(event)}
             />;
         setVideo4(v4);
@@ -127,8 +128,18 @@ const MultiviewRecord: React.FC = () => {
     };
 
     const marks: SliderMarks = {
-        0: "00:00",
-        [`${durationTime}`]: tipFormatter(durationTime)
+        0: {
+            style: {
+                color: "white"
+            },
+            label: "00:00"
+        },
+        [`${durationTime}`]: {
+            style: {
+                color: "white"
+            },
+            label: tipFormatter(durationTime)
+        }
     };
 
     const handleSeek = (value: number) => {
@@ -202,10 +213,10 @@ const MultiviewRecord: React.FC = () => {
         let canvas: HTMLCanvasElement;
         switch (e.key) {
             case "1":
-                canvas = await html2canvas(videoRef.current || document.body, { useCORS: false });
+                canvas = await html2canvas(videoRef.current || document.body, { width: 1366, height: 768 });
                 break;
             case "2":
-                canvas = await html2canvas(videoContainerRef.current || document.body, { useCORS: false });
+                canvas = await html2canvas(videoContainerRef.current || document.body, { width: 1366, height: 768 });
                 break;
             default:
                 break;
@@ -229,10 +240,10 @@ const MultiviewRecord: React.FC = () => {
             <video
                 ref={videoRef}
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px orangered" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onDurationChange={handleDurationChange}
                 onClick={(event) => handleClickVideo1(event)}
             />;
@@ -241,10 +252,10 @@ const MultiviewRecord: React.FC = () => {
         let v2 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo2(event)}
             />;
         setVideo2(v2);
@@ -252,10 +263,10 @@ const MultiviewRecord: React.FC = () => {
         let v3 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo3(event)}
             />;
         setVideo3(v3);
@@ -263,10 +274,10 @@ const MultiviewRecord: React.FC = () => {
         let v4 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo4(event)}
             />;
         setVideo4(v4);
@@ -278,10 +289,10 @@ const MultiviewRecord: React.FC = () => {
             <video
                 crossOrigin="anonymous"
                 ref={videoRef}
-                style={{margin: 5}}
+                style={{ border: "solid 1px orangered" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onDurationChange={handleDurationChange}
                 onClick={(event) => handleClickVideo2(event)}
             />;
@@ -290,10 +301,10 @@ const MultiviewRecord: React.FC = () => {
         let v1 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo1(event)}
             />;
         setVideo1(v1);
@@ -301,10 +312,10 @@ const MultiviewRecord: React.FC = () => {
         let v3 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo3(event)}
             />;
         setVideo3(v3);
@@ -312,10 +323,10 @@ const MultiviewRecord: React.FC = () => {
         let v4 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo4(event)}
             />;
         setVideo4(v4);
@@ -327,10 +338,10 @@ const MultiviewRecord: React.FC = () => {
             <video
                 crossOrigin="anonymous"
                 ref={videoRef}
-                style={{margin: 5}}
+                style={{ border: "solid 1px orangered" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onDurationChange={handleDurationChange}
                 onClick={(event) => handleClickVideo3(event)}
             />;
@@ -339,10 +350,10 @@ const MultiviewRecord: React.FC = () => {
         let v1 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo1(event)}
             />;
         setVideo1(v1);
@@ -350,10 +361,10 @@ const MultiviewRecord: React.FC = () => {
         let v2 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo2(event)}
             />;
         setVideo2(v2);
@@ -361,10 +372,10 @@ const MultiviewRecord: React.FC = () => {
         let v4 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo4(event)}
             />;
         setVideo4(v4);
@@ -376,10 +387,10 @@ const MultiviewRecord: React.FC = () => {
             <video
                 crossOrigin="anonymous"
                 ref={videoRef}
-                style={{margin: 5}}
+                style={{ border: "solid 1px orangered" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onDurationChange={handleDurationChange}
                 onClick={(event) => handleClickVideo4(event)}
             />;
@@ -388,10 +399,10 @@ const MultiviewRecord: React.FC = () => {
         let v1 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo1(event)}
             />;
         setVideo1(v1);
@@ -399,10 +410,10 @@ const MultiviewRecord: React.FC = () => {
         let v2 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo2(event)}
             />;
         setVideo2(v2);
@@ -410,10 +421,10 @@ const MultiviewRecord: React.FC = () => {
         let v3 =
             <video
                 crossOrigin="anonymous"
-                style={{margin: 5}}
+                style={{ border: "solid 1px grey" }}
                 src={"http://localhost:5000/records/play?name=test2.mkv"}
-                width={640}
-                height={360}
+                width={683}
+                height={384}
                 onClick={(event) => handleClickVideo3(event)}
             />;
         setVideo3(v3);
@@ -427,167 +438,205 @@ const MultiviewRecord: React.FC = () => {
                     <TransformWrapper>
                         {({ zoomIn, zoomOut, state, ...rest }) => (
                             <React.Fragment>
-                                <div ref={videoContainerRef} className="videoContainer">
-                                    <TransformComponent>
-                                        {video1}
-                                        {video2}
-                                        {video3}
-                                        {video4}
-                                    </TransformComponent>
+                                <div className="container">
+                                    <div ref={videoContainerRef} className="videoContainer">
+                                        <TransformComponent>
+                                            {video1}
+                                            {video2}
+                                            {video3}
+                                            {video4}
+                                        </TransformComponent>
+                                    </div>
+
+                                    <div className="controlBar">
+                                        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+                                            <Col className="gutter-row" span={20}>
+                                                <Button
+                                                    style={{ color: "white" }}
+                                                    type="link"
+                                                    size="small"
+                                                >
+                                                    時間範囲
+                                                </Button>
+                                                <Select defaultValue="12" style={{ width: "15%" }}>
+                                                    <Select.Option value="1">1h</Select.Option>
+                                                    <Select.Option value="5">5h</Select.Option>
+                                                    <Select.Option value="12">12h</Select.Option>
+                                                </Select>
+                                                <Button
+                                                    style={{ color: "white" }}
+                                                    type="link"
+                                                    size="small"
+                                                >
+                                                    2022/08/17
+                                                </Button>
+                                                <Button
+                                                    style={{ color: "white" }}
+                                                    type="link"
+                                                    size="small"
+                                                >
+                                                    {tipFormatter(currentTime)}
+                                                </Button>
+                                            </Col>
+                                            <Col className="gutter-row" span={4}>
+                                                <Dropdown.Button
+                                                    style={{ background: "#3a414b", color: "white" }}
+                                                    size="small"
+                                                    placement="top"
+                                                    overlay={
+                                                        <div
+                                                            style={{ height: 50 }}
+                                                        >
+                                                            <Slider
+                                                                vertical
+                                                                value={volume}
+                                                                onChange={handleVolume}
+                                                            />
+                                                        </div>
+                                                    }
+                                                    icon={<SoundOutlined />}
+                                                />
+                                                <Dropdown.Button
+                                                    style={{ background: "#3a414b", color: "white" }}
+                                                    size="small"
+
+                                                    placement="top"
+                                                    overlay={<Menu
+                                                        style={{
+                                                            height: 100,
+                                                            width: 50,
+                                                            background: "#3a414b",
+                                                            opacity: 0.8
+                                                        }}
+                                                        onClick={handleCapture}
+                                                        items={[
+                                                            {
+                                                                key: "1",
+                                                                icon: <BorderOutlined
+                                                                    style={{ color: "white", fontSize: "30px" }} />
+                                                            },
+                                                            {
+                                                                key: "2",
+                                                                icon: <AppstoreOutlined
+                                                                    style={{ color: "white", fontSize: "30px" }} />
+                                                            }
+                                                        ]}
+                                                    />}
+                                                    icon={<CameraOutlined />}
+                                                />
+                                            </Col>
+                                            <Col className="gutter-row" span={24}>
+                                                <Slider tipFormatter={tipFormatter} marks={marks} min={0}
+                                                        max={durationTime}
+                                                        value={currentTime} onChange={handleSeek} />
+                                            </Col>
+                                            <Col className="gutter-row" span={6}>
+                                                <Button
+                                                    style={{ color: "white" }}
+                                                    type="link"
+                                                    size="small"
+                                                >
+                                                    速さ
+                                                </Button>
+                                                <Button
+                                                    style={{ background: "#3a414b", color: "white" }}
+                                                    type="default"
+                                                    icon={<MinusOutlined />}
+                                                    onClick={handleDecreasePlaybackRate}
+                                                    size="small"
+                                                />
+                                                <Button
+                                                    style={{ color: "white" }}
+                                                    type="link"
+                                                    icon={<DoubleRightOutlined />}
+                                                    size="small"
+                                                >
+                                                    {playbackRate}
+                                                </Button>
+                                                <Button
+                                                    style={{ background: "#3a414b", color: "white" }}
+                                                    type="default"
+                                                    icon={<PlusOutlined />}
+                                                    onClick={handleIncreasePlaybackRate}
+                                                    size="small"
+                                                />
+                                            </Col>
+                                            <Col className="gutter-row" span={8}>
+                                                <Button
+                                                    style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
+                                                    shape="round"
+                                                    icon={<StepBackwardOutlined />}
+                                                    onClick={handleRevert}
+                                                    size="small"
+                                                />
+                                                <Button
+                                                    style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
+                                                    shape="round"
+                                                    icon={isRewind ? <CaretRightOutlined /> : <CaretLeftOutlined />}
+                                                    onClick={handleRewind}
+                                                    size="small"
+                                                />
+                                                <Button
+                                                    style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
+                                                    shape="round"
+                                                    icon={isPlaying ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
+                                                    onClick={handlePlaying}
+                                                    size="small"
+                                                />
+                                                <Button
+                                                    style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
+                                                    shape="round"
+                                                    icon={<StepForwardOutlined />}
+                                                    onClick={handleForward}
+                                                    size="small"
+                                                />
+                                            </Col>
+                                            <Col className="gutter-row" span={5}>
+                                                <Button
+                                                    style={{ background: "#3a414b", color: "white" }}
+                                                    type="link"
+                                                    icon={<ZoomInOutlined />}
+                                                    size="small"
+                                                />
+                                                <Button
+                                                    style={{ background: "#3a414b", color: "white" }}
+                                                    type="default"
+                                                    icon={<MinusOutlined />}
+                                                    onClick={() => zoomOut(0.7)}
+                                                    size="small"
+                                                />
+                                                <Button
+                                                    style={{ color: "white" }}
+                                                    type="link"
+                                                    size="small"
+                                                >
+                                                    {state.scale.toFixed(1)}
+                                                </Button>
+                                                <Button
+                                                    style={{ background: "#3a414b", color: "white" }}
+                                                    type="default"
+                                                    icon={<PlusOutlined />}
+                                                    onClick={() => zoomIn(0.7)}
+                                                    size="small"
+                                                />
+                                            </Col>
+                                            <Col className="gutter-row" span={5}>
+                                                <Button
+                                                    style={{ background: "#3a414b", color: "white" }}
+                                                    type="link"
+                                                    icon={<EyeOutlined />}
+                                                    size="small"
+                                                />
+                                                <Select defaultValue="10" style={{ width: "65%" }}>
+                                                    <Select.Option value="0">0</Select.Option>
+                                                    <Select.Option value="5">5</Select.Option>
+                                                    <Select.Option value="10">10</Select.Option>
+                                                </Select>
+                                            </Col>
+                                        </Row>
+                                    </div>
                                 </div>
 
-                                <div className="controlBar">
-                                    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                                        <Col className="gutter-row" span={20}>
-                                            <Button
-                                                type="link"
-                                                size="large"
-                                            >
-                                                時間範囲
-                                            </Button>
-                                            <Select defaultValue="12" style={{ width: "10%" }}>
-                                                <Select.Option value="1">1h</Select.Option>
-                                                <Select.Option value="5">5h</Select.Option>
-                                                <Select.Option value="12">12h</Select.Option>
-                                            </Select>
-                                            <Button
-                                                type="link"
-                                                size="large"
-                                            >
-                                                2022/08/17
-                                            </Button>
-                                            <Button
-                                                type="link"
-                                                size="large"
-                                            >
-                                                {tipFormatter(currentTime)}
-                                            </Button>
-                                        </Col>
-                                        <Col className="gutter-row" span={4}>
-                                            <Dropdown.Button
-                                                placement="top"
-                                                overlay={
-                                                    <div
-                                                        style={{ height: 50 }}
-                                                    >
-                                                        <Slider
-                                                            vertical
-                                                            value={volume}
-                                                            onChange={handleVolume}
-                                                        />
-                                                    </div>
-                                                }
-                                                icon={<SoundOutlined />}
-                                            />
-                                            <Dropdown.Button
-                                                placement="top"
-                                                overlay={<Menu
-                                                    style={{ height: 100, width: 50 }}
-                                                    onClick={handleCapture}
-                                                    items={[
-                                                        {
-                                                            key: "1",
-                                                            icon: <BorderOutlined style={{ fontSize: "30px" }} />
-                                                        },
-                                                        {
-                                                            key: "2",
-                                                            icon: <AppstoreOutlined style={{ fontSize: "30px" }} />
-                                                        }
-                                                    ]}
-                                                />}
-                                                icon={<CameraOutlined />}
-                                            />
-                                        </Col>
-                                        <Col className="gutter-row" span={24}>
-                                            <Slider tipFormatter={tipFormatter} marks={marks} min={0} max={durationTime}
-                                                    value={currentTime} onChange={handleSeek} />
-                                        </Col>
-                                        <Col className="gutter-row" span={4}>
-                                            <Button
-                                                type="link"
-                                                size="large"
-                                            >
-                                                速さ
-                                            </Button>
-                                            <Button
-                                                type="default"
-                                                icon={<MinusOutlined />}
-                                                onClick={handleDecreasePlaybackRate}
-                                            />
-                                            <Button
-                                                type="link"
-                                                icon={<DoubleRightOutlined />}
-                                                size="large"
-                                            >{playbackRate}</Button>
-                                            <Button
-                                                type="default"
-                                                icon={<PlusOutlined />}
-                                                onClick={handleIncreasePlaybackRate}
-                                            />
-                                        </Col>
-                                        <Col className="gutter-row" span={12}>
-                                            <Button
-                                                style={{ marginLeft: "1%" }}
-                                                shape="round"
-                                                icon={<StepBackwardOutlined />}
-                                                onClick={handleRevert}
-                                            />
-                                            <Button
-                                                style={{ marginLeft: "1%" }}
-                                                shape="round"
-                                                icon={isRewind ? <CaretRightOutlined /> : <CaretLeftOutlined />}
-                                                onClick={handleRewind}
-                                            />
-                                            <Button
-                                                style={{ marginLeft: "1%" }}
-                                                shape="round"
-                                                icon={isPlaying ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
-                                                onClick={handlePlaying}
-                                            />
-                                            <Button
-                                                style={{ marginLeft: "1%" }}
-                                                shape="round"
-                                                icon={<StepForwardOutlined />}
-                                                onClick={handleForward}
-                                            />
-                                        </Col>
-                                        <Col className="gutter-row" span={4}>
-                                            <Button
-                                                type="link"
-                                                icon={<ZoomInOutlined />}
-                                                size="large"
-                                            />
-                                            <Button
-                                                type="default"
-                                                icon={<MinusOutlined />}
-                                                onClick={() => zoomOut(0.7)}
-                                            />
-                                            <Button
-                                                type="link"
-                                                size="large"
-                                            >
-                                                {state.scale.toFixed(1)}
-                                            </Button>
-                                            <Button
-                                                type="default"
-                                                icon={<PlusOutlined />}
-                                                onClick={() => zoomIn(0.7)}
-                                            />
-                                        </Col>
-                                        <Col className="gutter-row" span={4}>
-                                            <Button
-                                                type="link"
-                                                icon={<EyeOutlined />}
-                                                size="large"
-                                            />
-                                            <Select defaultValue="10" style={{ width: "30%" }}>
-                                                <Select.Option value="0">0</Select.Option>
-                                                <Select.Option value="5">5</Select.Option>
-                                                <Select.Option value="10">10</Select.Option>
-                                            </Select>
-                                        </Col>
-                                    </Row>
-                                </div>
                             </React.Fragment>
                         )}
                     </TransformWrapper>
