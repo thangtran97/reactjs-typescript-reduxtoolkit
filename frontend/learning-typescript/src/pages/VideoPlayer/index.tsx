@@ -78,6 +78,7 @@ const VideoPlayer: React.FC = () => {
             }
         };
     });
+
     return (
         <Page
             content={

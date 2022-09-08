@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import videoReducer from "./videoSlice";
 import recordReducer from "./recordSlice";
+import imageReducer from "./imageSlice";
 
 export const store = configureStore({
     reducer: {
         video: videoReducer,
-        record: recordReducer
+        record: recordReducer,
+        image: imageReducer
     },
 });
 
