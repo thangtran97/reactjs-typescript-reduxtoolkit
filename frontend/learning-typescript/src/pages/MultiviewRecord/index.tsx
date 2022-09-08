@@ -29,31 +29,15 @@ const MultiviewRecord: React.FC = () => {
     const [processInterval, setProcessInterval] = useState<any>();
     const [durationPlayback, setDurationPlayback] = useState<number>(5 * 60);
     const [volume, setVolume] = useState<number>(50);
-    // const [currentVideo, setCurrentVideo] = useState<number>(1);
+    const [scale, setScale] = useState<number>(1);
     const [video1, setVideo1] = useState<ReactElement>(<video />);
     const [video2, setVideo2] = useState<ReactElement>(<video />);
     const [video3, setVideo3] = useState<ReactElement>(<video />);
     const [video4, setVideo4] = useState<ReactElement>(<video />);
     let videoRef = useRef<HTMLVideoElement>(null);
+    let panPinchRef = useRef<ReactZoomPanPinchRef>(null);
     let videoContainerRef = useRef(null);
     const dispatch = useAppDispatch();
-
-    const [scale, setScale] = useState<number>(1);
-    const panPinchRef = useRef<ReactZoomPanPinchRef>(null);
-
-    const handleOnZoom = (stats: ReactZoomPanPinchRef) => {
-        setScale(stats.state.scale);
-    };
-
-    const zoomIn = () => {
-        panPinchRef.current?.zoomIn(0.7);
-        setScale(prevState => prevState * 2);
-    };
-
-    const zoomOut = () => {
-        panPinchRef.current?.zoomOut(0.7);
-        setScale(prevState => prevState / 2);
-    };
 
     useEffect(() => {
         clearInterval(processInterval);
@@ -85,6 +69,7 @@ const MultiviewRecord: React.FC = () => {
             setPlaybackRate(videoRef.current.playbackRate);
             videoRef.current.duration < durationPlayback ? setDurationTime(videoRef.current.duration) : setDurationTime(durationPlayback);
             videoRef.current.paused ? setIsPlaying(false) : setIsPlaying(true);
+            setDurationPlayback(parseInt(videoRef.current!.getAttribute("durationPlayback") || "300"));
             setScale(panPinchRef.current.state.scale);
         }
 
@@ -95,6 +80,7 @@ const MultiviewRecord: React.FC = () => {
         let duration = +value * 60;
         setDurationPlayback(duration);
         videoRef.current!.duration < duration ? setDurationTime(videoRef.current!.duration) : setDurationTime(duration);
+        videoRef.current?.setAttribute("durationPlayback", duration.toString());
     };
 
     useEffect(() => {
@@ -105,11 +91,11 @@ const MultiviewRecord: React.FC = () => {
                         <video
                             ref={videoRef}
                             crossOrigin=""
-                            style={{ border: "solid 1px orangered" }}
                             src={"http://localhost:5000/records/play?name=test.mkv"}
                             width={683}
                             height={384}
                             onClick={(event) => handleClickVideo1(event)}
+
                         />
                     </TransformComponent>
                 </React.Fragment>
@@ -198,6 +184,20 @@ const MultiviewRecord: React.FC = () => {
         }
     };
 
+    const handleOnZoom = (stats: ReactZoomPanPinchRef) => {
+        setScale(stats.state.scale);
+    };
+
+    const zoomIn = () => {
+        panPinchRef.current?.zoomIn(0.7);
+        setScale(prevState => prevState * 2);
+    };
+
+    const zoomOut = () => {
+        panPinchRef.current?.zoomOut(0.7);
+        setScale(prevState => prevState / 2 > 1 ? prevState / 2 : 1);
+    };
+
     const handleSeek = (value: number) => {
         setCurrentTime(value);
         videoRef.current!.currentTime = value;
@@ -282,7 +282,7 @@ const MultiviewRecord: React.FC = () => {
         let base64_image = canvas.toDataURL("image/png", 1.0);
 
         let req = {
-            name: "test_" + Math.round(videoRef.current!.currentTime * 1000),
+            name: "img_" + Math.round(videoRef.current!.currentTime * 1000),
             image: base64_image
         };
 
