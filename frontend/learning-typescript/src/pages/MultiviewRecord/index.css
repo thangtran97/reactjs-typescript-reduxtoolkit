@@ -1,9 +1,9 @@
 .container {
     position: relative;
     max-width: 1366px;
-    width:100%;
-    max-height:768px;
-    height:100%;
+    width: 100%;
+    max-height: 768px;
+    height: 100%;
 }
 
 .videoContainer:hover + .controlBar {
@@ -20,7 +20,7 @@
     opacity: 0;
     transition: all .4s ease 1s;
     background: #3a414b;
-    width:50%;
+    width: 683px;
     /*opacity: 0.8;*/
     position: absolute;
     bottom: 0;
