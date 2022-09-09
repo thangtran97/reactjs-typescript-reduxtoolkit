@@ -1,0 +1,159 @@
+{
+  "channel_defaults": {},
+  "server": {
+    "debug": true,
+    "http_debug": false,
+    "http_demo": true,
+    "http_dir": "web",
+    "http_login": "demo",
+    "http_password": "demo",
+    "http_port": ":8083",
+    "https": false,
+    "https_auto_tls": false,
+    "https_auto_tls_name": "",
+    "https_cert": "server.crt",
+    "https_key": "server.key",
+    "https_port": ":443",
+    "ice_credential": "",
+    "ice_servers": [
+      "stun:stun.l.google.com:19302"
+    ],
+    "ice_username": "",
+    "log_level": "debug",
+    "rtsp_port": ":5541",
+    "token": {
+      "backend": "http://127.0.0.1/test.php",
+      "enable": false
+    },
+    "webrtc_port_max": 0,
+    "webrtc_port_min": 0
+  },
+  "streams": {
+    "2a1e26f0-ceb0-4e7c-a989-100fa93a8fca": {
+      "channels": {
+        "0": {
+          "url": "rtsp://77.110.228.219/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "Nordland"
+    },
+    "41251ba0-be89-457f-8b1a-3f6a4ddaaedf": {
+      "channels": {
+        "0": {
+          "url": "rtsp://admin:11111Qaz@172.20.109.248:554/cam/realmonitor?channel=1\u0026subtype=1",
+          "audio": true
+        }
+      },
+      "name": "anh duc"
+    },
+    "449048ef-4a96-4c22-ac02-1b6b77122e35": {
+      "channels": {
+        "0": {
+          "url": "rtmp://171.25.232.10/12d525bc9f014e209c1280bc0d46a87e",
+          "audio": true
+        }
+      },
+      "name": "rtmp"
+    },
+    "4515773b-3cfb-4ca4-89ad-a1bdc7bacbe6": {
+      "channels": {
+        "0": {
+          "url": "rtsp://132.239.12.145:554/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "PriceCenterPlaza"
+    },
+    "5334db8c-22b6-4fba-85ef-1f1d083d1651": {
+      "channels": {
+        "0": {
+          "url": "rtsp://37.157.51.30/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "Norwich"
+    },
+    "610f7bdb-6a43-452d-9235-3a49a692f17a": {
+      "channels": {
+        "0": {
+          "url": "rtsp://73.114.177.111/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "Bedford Hills"
+    },
+    "6279629d-eb8e-4b87-a03f-43adb05f2ecc": {
+      "channels": {
+        "0": {
+          "url": "rtsp://196.21.92.82/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "Western Cape"
+    },
+    "63d4ad4a-00cc-4bec-8e1e-d7f1142a575a": {
+      "channels": {
+        "0": {
+          "url": "rtsp://rtsp.stream/pattern",
+          "audio": true
+        }
+      },
+      "name": "pattern"
+    },
+    "95269568-288b-4fe6-b36c-86ade2963135": {
+      "channels": {
+        "0": {
+          "url": "rtsp://stream.strba.sk:1935/strba/VYHLAD_JAZERO.stream",
+          "audio": true
+        }
+      },
+      "name": "VyhladJazero"
+    },
+    "b1e216b0-2361-440c-b2fc-2e25dcffe532": {
+      "channels": {
+        "0": {
+          "url": "rtsp://176.139.87.16/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "Vaison-La-Romaine"
+    },
+    "bff3a176-a0ad-4778-9b55-1406d1cefa9e": {
+      "channels": {
+        "0": {
+          "url": "rtsp://admin:11111Qaz@172.20.109.248:554/cam/realmonitor?channel=1\u0026subtype=1",
+          "audio": true
+        }
+      },
+      "name": "cty"
+    },
+    "c5356d49-ab22-4843-ac7c-1f948f2d8bb3": {
+      "channels": {
+        "0": {
+          "url": "rtsp://213.34.225.97/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "Zeeland"
+    },
+    "c6f9ded4-8e45-419e-9eb7-0a51e2985737": {
+      "channels": {
+        "0": {
+          "url": "rtsp://97.68.104.34/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "Orlando"
+    },
+    "d24cf138-96eb-4252-a12a-94f419510b9f": {
+      "channels": {
+        "0": {
+          "url": "rtsp://71.83.5.156/axis-media/media.amp",
+          "audio": true
+        }
+      },
+      "name": "Allendale"
+    }
+  }
+}
