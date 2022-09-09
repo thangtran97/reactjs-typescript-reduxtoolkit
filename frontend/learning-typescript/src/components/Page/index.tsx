@@ -2,7 +2,6 @@ import React, { ReactElement } from "react";
 import "antd/dist/antd.css";
 import { Layout, Menu, MenuProps } from "antd";
 import { Link } from "react-router-dom";
-import MultiviewStream from "../../pages/MultiviewStream";
 
 const { Header, Content, Sider, Footer } = Layout;
 

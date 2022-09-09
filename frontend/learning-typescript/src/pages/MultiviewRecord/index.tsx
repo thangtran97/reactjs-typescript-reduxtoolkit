@@ -85,12 +85,13 @@ const MultiviewRecord: React.FC = () => {
 
     useEffect(() => {
         let v1 =
-            <TransformWrapper ref={panPinchRef} maxScale={8} onZoom={handleOnZoom}>
+            <TransformWrapper ref={panPinchRef} maxScale={16} onZoom={handleOnZoom}>
                 <React.Fragment>
                     <TransformComponent>
                         <video
                             ref={videoRef}
                             crossOrigin=""
+                            style={{ border: "solid 1px orangered" }}
                             src={"http://localhost:5000/records/play?name=test.mkv"}
                             width={683}
                             height={384}
@@ -189,13 +190,15 @@ const MultiviewRecord: React.FC = () => {
     };
 
     const zoomIn = () => {
-        panPinchRef.current?.zoomIn(0.7);
-        setScale(prevState => prevState * 2);
+        let newScale = scale * Math.exp(0.693);
+        panPinchRef.current?.zoomIn(0.693);
+        setScale(newScale <= 16 ? newScale : 16);
     };
 
     const zoomOut = () => {
-        panPinchRef.current?.zoomOut(0.7);
-        setScale(prevState => prevState / 2 > 1 ? prevState / 2 : 1);
+        panPinchRef.current?.zoomOut(0.693);
+        let newScale = scale * Math.exp(-0.693);
+        setScale(newScale > 1 ? newScale : 1);
     };
 
     const handleSeek = (value: number) => {
@@ -292,7 +295,7 @@ const MultiviewRecord: React.FC = () => {
     const handleClickVideo1 = (event: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
         event.preventDefault();
         let v1 =
-            <TransformWrapper ref={panPinchRef} maxScale={8} onZoom={handleOnZoom}>
+            <TransformWrapper ref={panPinchRef} maxScale={16} onZoom={handleOnZoom}>
                 <React.Fragment>
                     <TransformComponent>
                         <video
@@ -364,7 +367,7 @@ const MultiviewRecord: React.FC = () => {
     const handleClickVideo2 = (event: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
         event.preventDefault();
         let v2 =
-            <TransformWrapper ref={panPinchRef} maxScale={8} onZoom={handleOnZoom}>
+            <TransformWrapper ref={panPinchRef} maxScale={16} onZoom={handleOnZoom}>
                 <React.Fragment>
                     <TransformComponent>
                         <video
@@ -436,7 +439,7 @@ const MultiviewRecord: React.FC = () => {
     const handleClickVideo3 = (event: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
         event.preventDefault();
         let v3 =
-            <TransformWrapper ref={panPinchRef} maxScale={8} onZoom={handleOnZoom}>
+            <TransformWrapper ref={panPinchRef} maxScale={16} onZoom={handleOnZoom}>
                 <React.Fragment>
                     <TransformComponent>
                         <video
@@ -508,7 +511,7 @@ const MultiviewRecord: React.FC = () => {
     const handleClickVideo4 = (event: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
         event.preventDefault();
         let v4 =
-            <TransformWrapper ref={panPinchRef} maxScale={8} onZoom={handleOnZoom}>
+            <TransformWrapper ref={panPinchRef} maxScale={16} onZoom={handleOnZoom}>
                 <React.Fragment>
                     <TransformComponent>
                         <video
@@ -592,201 +595,202 @@ const MultiviewRecord: React.FC = () => {
                                 {video4}
                             </Row>
                         </div>
+                        <div className="controlBarContainer">
+                            <div className="controlBar">
+                                <Row>
+                                    <Col className="gutter-row" span={20}>
+                                        <Button
+                                            style={{ color: "white" }}
+                                            type="link"
+                                            size="small"
+                                        >
+                                            時間範囲
+                                        </Button>
+                                        <Select
+                                            style={{ width: "15%" }}
+                                            value={(durationPlayback / 60).toString()}
+                                            onChange={handleChangeDurationPlayback}
+                                        >
+                                            <Select.Option value="1">1p</Select.Option>
+                                            <Select.Option value="5">5p</Select.Option>
+                                            <Select.Option value="12">30p</Select.Option>
+                                        </Select>
+                                        <Button
+                                            style={{ color: "white" }}
+                                            type="link"
+                                            size="small"
+                                        >
+                                            2022/08/17
+                                        </Button>
+                                        <Button
+                                            style={{ color: "white" }}
+                                            type="link"
+                                            size="small"
+                                        >
+                                            {tipFormatter(currentTime)}
+                                        </Button>
+                                    </Col>
+                                    <Col className="gutter-row" span={4}>
+                                        <Dropdown.Button
+                                            style={{ background: "#3a414b", color: "white" }}
+                                            size="small"
+                                            placement="top"
+                                            overlay={
+                                                <div
+                                                    style={{ height: 50 }}
+                                                >
+                                                    <Slider
+                                                        vertical
+                                                        value={volume}
+                                                        onChange={handleVolume}
+                                                    />
+                                                </div>
+                                            }
+                                            icon={<SoundOutlined />}
+                                        />
+                                        <Dropdown.Button
+                                            style={{ background: "#3a414b", color: "white" }}
+                                            size="small"
 
-                        <div className="controlBar">
-                            <Row>
-                                <Col className="gutter-row" span={20}>
-                                    <Button
-                                        style={{ color: "white" }}
-                                        type="link"
-                                        size="small"
-                                    >
-                                        時間範囲
-                                    </Button>
-                                    <Select
-                                        style={{ width: "15%" }}
-                                        value={(durationPlayback / 60).toString()}
-                                        onChange={handleChangeDurationPlayback}
-                                    >
-                                        <Select.Option value="1">1p</Select.Option>
-                                        <Select.Option value="5">5p</Select.Option>
-                                        <Select.Option value="12">30p</Select.Option>
-                                    </Select>
-                                    <Button
-                                        style={{ color: "white" }}
-                                        type="link"
-                                        size="small"
-                                    >
-                                        2022/08/17
-                                    </Button>
-                                    <Button
-                                        style={{ color: "white" }}
-                                        type="link"
-                                        size="small"
-                                    >
-                                        {tipFormatter(currentTime)}
-                                    </Button>
-                                </Col>
-                                <Col className="gutter-row" span={4}>
-                                    <Dropdown.Button
-                                        style={{ background: "#3a414b", color: "white" }}
-                                        size="small"
-                                        placement="top"
-                                        overlay={
-                                            <div
-                                                style={{ height: 50 }}
-                                            >
-                                                <Slider
-                                                    vertical
-                                                    value={volume}
-                                                    onChange={handleVolume}
-                                                />
-                                            </div>
-                                        }
-                                        icon={<SoundOutlined />}
-                                    />
-                                    <Dropdown.Button
-                                        style={{ background: "#3a414b", color: "white" }}
-                                        size="small"
-
-                                        placement="top"
-                                        overlay={<Menu
-                                            style={{
-                                                height: 100,
-                                                width: 50,
-                                                background: "#3a414b",
-                                                opacity: 0.8
-                                            }}
-                                            onClick={handleCapture}
-                                            items={[
-                                                {
-                                                    key: "1",
-                                                    icon: <BorderOutlined
-                                                        style={{ color: "white", fontSize: "30px" }} />
-                                                },
-                                                {
-                                                    key: "2",
-                                                    icon: <AppstoreOutlined
-                                                        style={{ color: "white", fontSize: "30px" }} />
-                                                }
-                                            ]}
-                                        />}
-                                        icon={<CameraOutlined />}
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className="gutter-row" span={24}>
-                                    <Slider tooltip={{ formatter: tipFormatter }} marks={marks} min={0}
-                                            max={durationTime}
-                                            value={currentTime} onChange={handleSeek} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className="gutter-row" span={6}>
-                                    <Button
-                                        style={{ color: "white" }}
-                                        type="link"
-                                        size="small"
-                                    >
-                                        速さ
-                                    </Button>
-                                    <Button
-                                        style={{ background: "#3a414b", color: "white" }}
-                                        type="default"
-                                        icon={<MinusOutlined />}
-                                        onClick={handleDecreasePlaybackRate}
-                                        size="small"
-                                    />
-                                    <Button
-                                        style={{ color: "white" }}
-                                        type="link"
-                                        icon={<DoubleRightOutlined />}
-                                        size="small"
-                                    >
-                                        {playbackRate}
-                                    </Button>
-                                    <Button
-                                        style={{ background: "#3a414b", color: "white" }}
-                                        type="default"
-                                        icon={<PlusOutlined />}
-                                        onClick={handleIncreasePlaybackRate}
-                                        size="small"
-                                    />
-                                </Col>
-                                <Col className="gutter-row" span={8}>
-                                    <Button
-                                        style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
-                                        shape="round"
-                                        icon={<StepBackwardOutlined />}
-                                        onClick={handleRevert}
-                                        size="small"
-                                    />
-                                    <Button
-                                        style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
-                                        shape="round"
-                                        icon={isRewind ? <CaretRightOutlined /> : <CaretLeftOutlined />}
-                                        onClick={handleRewind}
-                                        size="small"
-                                    />
-                                    <Button
-                                        style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
-                                        shape="round"
-                                        icon={isPlaying ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
-                                        onClick={handlePlaying}
-                                        size="small"
-                                    />
-                                    <Button
-                                        style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
-                                        shape="round"
-                                        icon={<StepForwardOutlined />}
-                                        onClick={handleForward}
-                                        size="small"
-                                    />
-                                </Col>
-                                <Col className="gutter-row" span={5}>
-                                    <Button
-                                        style={{ background: "#3a414b", color: "white" }}
-                                        type="link"
-                                        icon={<ZoomInOutlined />}
-                                        size="small"
-                                    />
-                                    <Button
-                                        style={{ background: "#3a414b", color: "white" }}
-                                        type="default"
-                                        icon={<MinusOutlined />}
-                                        onClick={zoomOut}
-                                        size="small"
-                                    />
-                                    <Button
-                                        style={{ color: "white" }}
-                                        type="link"
-                                        size="small"
-                                    >
-                                        {scale.toFixed(1)}
-                                    </Button>
-                                    <Button
-                                        style={{ background: "#3a414b", color: "white" }}
-                                        type="default"
-                                        icon={<PlusOutlined />}
-                                        onClick={zoomIn}
-                                        size="small"
-                                    />
-                                </Col>
-                                <Col className="gutter-row" span={5}>
-                                    <Button
-                                        style={{ background: "#3a414b", color: "white" }}
-                                        type="link"
-                                        icon={<EyeOutlined />}
-                                        size="small"
-                                    />
-                                    <Select defaultValue="10" style={{ width: "65%" }}>
-                                        <Select.Option value="0">0</Select.Option>
-                                        <Select.Option value="5">5</Select.Option>
-                                        <Select.Option value="10">10</Select.Option>
-                                    </Select>
-                                </Col>
-                            </Row>
+                                            placement="top"
+                                            overlay={<Menu
+                                                style={{
+                                                    height: 100,
+                                                    width: 50,
+                                                    background: "#3a414b",
+                                                    opacity: 0.8
+                                                }}
+                                                onClick={handleCapture}
+                                                items={[
+                                                    {
+                                                        key: "1",
+                                                        icon: <BorderOutlined
+                                                            style={{ color: "white", fontSize: "30px" }} />
+                                                    },
+                                                    {
+                                                        key: "2",
+                                                        icon: <AppstoreOutlined
+                                                            style={{ color: "white", fontSize: "30px" }} />
+                                                    }
+                                                ]}
+                                            />}
+                                            icon={<CameraOutlined />}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="gutter-row" span={24}>
+                                        <Slider tooltip={{ formatter: tipFormatter }} marks={marks} min={0}
+                                                max={durationTime}
+                                                value={currentTime} onChange={handleSeek} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="gutter-row" span={6}>
+                                        <Button
+                                            style={{ color: "white" }}
+                                            type="link"
+                                            size="small"
+                                        >
+                                            速さ
+                                        </Button>
+                                        <Button
+                                            style={{ background: "#3a414b", color: "white" }}
+                                            type="default"
+                                            icon={<MinusOutlined />}
+                                            onClick={handleDecreasePlaybackRate}
+                                            size="small"
+                                        />
+                                        <Button
+                                            style={{ color: "white" }}
+                                            type="link"
+                                            icon={<DoubleRightOutlined />}
+                                            size="small"
+                                        >
+                                            {playbackRate}
+                                        </Button>
+                                        <Button
+                                            style={{ background: "#3a414b", color: "white" }}
+                                            type="default"
+                                            icon={<PlusOutlined />}
+                                            onClick={handleIncreasePlaybackRate}
+                                            size="small"
+                                        />
+                                    </Col>
+                                    <Col className="gutter-row" span={8}>
+                                        <Button
+                                            style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
+                                            shape="round"
+                                            icon={<StepBackwardOutlined />}
+                                            onClick={handleRevert}
+                                            size="small"
+                                        />
+                                        <Button
+                                            style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
+                                            shape="round"
+                                            icon={isRewind ? <CaretRightOutlined /> : <CaretLeftOutlined />}
+                                            onClick={handleRewind}
+                                            size="small"
+                                        />
+                                        <Button
+                                            style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
+                                            shape="round"
+                                            icon={isPlaying ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
+                                            onClick={handlePlaying}
+                                            size="small"
+                                        />
+                                        <Button
+                                            style={{ marginLeft: "1%", background: "#3a414b", color: "white" }}
+                                            shape="round"
+                                            icon={<StepForwardOutlined />}
+                                            onClick={handleForward}
+                                            size="small"
+                                        />
+                                    </Col>
+                                    <Col className="gutter-row" span={5}>
+                                        <Button
+                                            style={{ background: "#3a414b", color: "white" }}
+                                            type="link"
+                                            icon={<ZoomInOutlined />}
+                                            size="small"
+                                        />
+                                        <Button
+                                            style={{ background: "#3a414b", color: "white" }}
+                                            type="default"
+                                            icon={<MinusOutlined />}
+                                            onClick={zoomOut}
+                                            size="small"
+                                        />
+                                        <Button
+                                            style={{ color: "white" }}
+                                            type="link"
+                                            size="small"
+                                        >
+                                            {scale.toFixed(1)}
+                                        </Button>
+                                        <Button
+                                            style={{ background: "#3a414b", color: "white" }}
+                                            type="default"
+                                            icon={<PlusOutlined />}
+                                            onClick={zoomIn}
+                                            size="small"
+                                        />
+                                    </Col>
+                                    <Col className="gutter-row" span={5}>
+                                        <Button
+                                            style={{ background: "#3a414b", color: "white" }}
+                                            type="link"
+                                            icon={<EyeOutlined />}
+                                            size="small"
+                                        />
+                                        <Select defaultValue="10" style={{ width: "65%" }}>
+                                            <Select.Option value="0">0</Select.Option>
+                                            <Select.Option value="5">5</Select.Option>
+                                            <Select.Option value="10">10</Select.Option>
+                                        </Select>
+                                    </Col>
+                                </Row>
+                            </div>
                         </div>
                     </div>
                 </div>

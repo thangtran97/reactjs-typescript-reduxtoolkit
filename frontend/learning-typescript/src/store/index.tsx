@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import videoReducer from "./videoSlice";
 import recordReducer from "./recordSlice";
 import imageReducer from "./imageSlice";
+import streamSlice from "./streamSlice";
 
 export const store = configureStore({
     reducer: {
         video: videoReducer,
         record: recordReducer,
-        image: imageReducer
+        image: imageReducer,
+        stream: streamSlice
     },
 });
 
