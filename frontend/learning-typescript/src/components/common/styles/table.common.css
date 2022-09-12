@@ -1,0 +1,5 @@
+.selected-row {
+    background: #6cdfff !important;
+    --bs-table-bg: #6cdfff !important;
+    --bs-table-striped-bg: #6cdfff !important;
+}

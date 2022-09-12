@@ -12,36 +12,45 @@ const VIDEO_FOLDER = 'D:\\training-reactjs\\test-git\\Traning-Reacjs\\frontend-j
 const IMG_FOLDER = 'D:\\training-reactjs\\media\\thumbnail\\';
 const THUMBNAIL_FOLDER = __dirname + '/images/'
 const OUTPUT_FOLDER = THUMBNAIL_FOLDER + '/videos/'
+const storage = require('./nvr/storage.json');
 
 app.use(express.json());
 app.use(express.static(THUMBNAIL_FOLDER));
 app.post('/search', (req, res) => {
     let result = []
-    console.log(req.body)
     let lstCam = req.body.comboBoxSelected;
     let startDate = req.body.startDate;
     let endDate = req.body.endDate;
+    let start = new Date(startDate);
+
     for (const cam of lstCam) {
         const camName = cam.label;
         const camValue = cam.value;
-        fs.readdirSync(VIDEO_FOLDER).forEach((file) => {
-            if (fs.lstatSync(VIDEO_FOLDER + file).isFile()) {
-                result.push({camName: camName, fileName: file, path: VIDEO_FOLDER})
+        let camUrl = path.join(camValue, start.getFullYear() + '',
+            zeroPad(start.getMonth() + 1, 2), zeroPad(start.getDate(), 2));
+        let storagePath = path.join(storage.rootpath, camUrl);
+        fs.readdirSync(storagePath).forEach((file) => {
+            if (fs.lstatSync(path.join(storagePath, file)).isFile()) {
+                result.push({camName: camName, fileName: file, path: storagePath, url: camUrl})
             }
         });
     }
+    log('seach output ', result);
     res.send(result);
 });
 
 app.post('/get-thumbnail', (req, res) => {
     let result = []
-    console.log('File name ' + req.body.fileName);
     let time
-    getVideoDurationInSeconds(VIDEO_FOLDER + req.body.fileName).then((duration) => {
+    let fileUrl = path.join(storage.rootpath, req.body.filePath, req.body.fileName);
+    console.log('File name ' + req.body.fileName);
+    console.log('File path ' + req.body.filePath);
+
+    getVideoDurationInSeconds(fileUrl).then((duration) => {
         console.log(duration)
         time = (duration | 0)
         for (let i = 7; i > 0; i--) {
-            ffmpeg({source: VIDEO_FOLDER + req.body.fileName, nolog: true})
+            ffmpeg({source: fileUrl, nolog: true})
                 .on('filenames', function (filenames) {
                     result.push(filenames);
                 })
@@ -56,19 +65,26 @@ app.post('/get-thumbnail', (req, res) => {
         setTimeout(function () {
             res.send(result)
         }, 1000);
+    }).catch((err) => {
+        log("MEOMEO ", err)
     })
 
 });
 
-app.post('/decode-video', (req, res) => {
+app.get('/decode-video', (req, res) => {
+    let ffmpegProcess = null;
+    const ext = req.params.ext;
+    const parts = `${req.params['0']}.${ext}`.split('/').filter(x => x.length > 0);
+
+    const filepath = path.join(storage.rootpath, ...parts);
     const args = [
         "-y",
-        "-i", VIDEO_FOLDER + req.body.fileName,
+        "-i", filepath,
         "-vcodec", "libx264", //libsvtav1 libx265
         "-acodec", "copy",
         OUTPUT_FOLDER + "meomeo.mkv"
     ];
-    let ffmpegProcess = null;
+
     try {
         ffmpegProcess = childProcess.spawn("ffmpeg", args, {});
         let done = false;
@@ -82,12 +98,15 @@ app.post('/decode-video', (req, res) => {
 
         ffmpegProcess.on('exit', (code) => {
             log(`[EXIT] code ${code}`);
-            res.send('meomeo.mkv')
         });
 
         ffmpegProcess.on('error', (err) => {
             log(`[ERROR]`, err);
         });
+
+        setTimeout(function () {
+
+        }, 2000);
 
     } catch (error) {
         log('startRecording error', error);
@@ -98,9 +117,12 @@ app.post('/decode-video', (req, res) => {
 
 app.get('/get-all-cb-data', (req, res) => {
     let result = []
-    for (let step = 1; step < 10; step++) {
-        result.push({label: 'Camera-' + zeroPad(step, 2), value: 'cam-' + step})
-    }
+    fs.readdirSync(storage.rootpath).forEach((file) => {
+        if (fs.lstatSync(path.join(storage.rootpath, file)).isDirectory()) {
+            result.push({label: file, value: file, key: '', disabled: false})
+        }
+    });
+    log('cb-box', result);
     res.send(result);
 });
 

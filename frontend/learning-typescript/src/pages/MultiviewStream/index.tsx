@@ -20,32 +20,32 @@ const MultiviewStream: React.FC = () => {
 
     const handleSelectStream: MenuProps["onClick"] = async e => {
 
-        switch (e.key) {
-            case "1":
-                canvas = await html2canvas(videoRef.current || document.body, {
-                    width: videoRef.current!.width,
-                    height: videoRef.current!.height
-                });
-                break;
-            case "2":
-                canvas = await html2canvas(videoContainerRef.current || document.body, {
-                    width: videoRef.current!.width * 2,
-                    height: videoRef.current!.height * 2
-                });
-                break;
-            default:
-                break;
-        }
+        // switch (e.key) {
+        //     case "1":
+        //         canvas = await html2canvas(videoRef.current || document.body, {
+        //             width: videoRef.current!.width,
+        //             height: videoRef.current!.height
+        //         });
+        //         break;
+        //     case "2":
+        //         canvas = await html2canvas(videoContainerRef.current || document.body, {
+        //             width: videoRef.current!.width * 2,
+        //             height: videoRef.current!.height * 2
+        //         });
+        //         break;
+        //     default:
+        //         break;
+        // }
 
         // @ts-ignore
         let base64_image = canvas.toDataURL("image/png", 1.0);
 
-        let req = {
-            name: "img_" + Math.round(videoRef.current!.currentTime * 1000),
-            image: base64_image
-        };
-
-        dispatch(uploadImage(req));
+        // let req = {
+        //     name: "img_" + Math.round(videoRef.current!.currentTime * 1000),
+        //     image: base64_image
+        // };
+        //
+        // dispatch(uploadImage(req));
     };
 
     useEffect(() => {
