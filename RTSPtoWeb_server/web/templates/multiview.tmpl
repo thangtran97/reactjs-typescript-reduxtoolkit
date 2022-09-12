@@ -455,6 +455,7 @@
         this.webrtc.addTransceiver('video', {
           'direction': 'sendrecv'
         });
+
         this.webrtcSendChannel = this.webrtc.createDataChannel('foo');
         this.webrtcSendChannel.onclose = (e) => console.log('sendChannel has closed',e);
         this.webrtcSendChannel.onopen = () => {

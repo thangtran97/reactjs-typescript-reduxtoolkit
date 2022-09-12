@@ -1,0 +1,28 @@
+{
+  "name": "express-hls-example",
+  "version": "1.0.0",
+  "description": "Express, HLS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "@ffprobe-installer/ffprobe": "^1.4.1",
+    "cors": "^2.8.5",
+    "cron": "^2.1.0",
+    "express": "^4.18.1",
+    "ffmpeg-static": "^5.1.0",
+    "file-url": "^4.0.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "get-video-duration": "^4.1.0",
+    "hls-server": "^1.5.0",
+    "node-onvif": "^0.1.7",
+    "node-rtsp-stream": "^0.0.9",
+    "node-rtsp-stream-jsmpeg": "^0.0.2",
+    "onvif": "^0.6.6",
+    "rtsp-relay": "^1.6.1",
+    "video-stitch": "^1.7.1",
+    "ws": "^8.8.1"
+  }
+}

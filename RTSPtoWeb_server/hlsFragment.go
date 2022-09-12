@@ -1,9 +1,8 @@
 package main
 
 import (
-	"time"
-
 	"github.com/deepch/vdk/av"
+	"time"
 )
 
 //Fragment struct

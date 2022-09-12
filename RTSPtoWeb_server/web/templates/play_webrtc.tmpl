@@ -38,7 +38,6 @@
     });
     webrtc.onnegotiationneeded = handleNegotiationNeeded;
     webrtc.onsignalingstatechange = signalingstatechange;
-
     webrtc.ontrack = ontrack
     let offer = await webrtc.createOffer({
             //iceRestart:true,
@@ -50,7 +49,7 @@
 
   function ontrack (event){
     console.log(event.streams.length + ' track is delivered');
-      mediaStream.addTrack(event.track);
+    mediaStream.addTrack(event.track);
   }
 
   async function signalingstatechange (){

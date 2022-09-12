@@ -3,14 +3,7 @@ from flask_cors import CORS
 import os
 import io
 import base64
-from PIL import Image
-import gi
 
-gi.require_version("Gst", "1.0")
-
-from gi.repository import Gst
-
-Gst.init()
 app = Flask(__name__)
 CORS(app)
 

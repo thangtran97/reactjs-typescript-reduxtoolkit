@@ -496,9 +496,14 @@ let isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 && nav
     this.webrtcSendChannelInterval = null;
     this.uuid = uuid;
     this.video = videoPlayerVar.find('video')[0];
+    this.video.addEventListener('loadeddata', () => {
+        this.video.play();
+      });
     this.channel = channel || 0;
     this.playWebrtc = function() {
         var _this = this;
+        let mediaStream = new MediaStream();
+        _this.video.srcObject =  mediaStream;
         this.webrtc = new RTCPeerConnection({
           iceServers: [{
             urls: ["stun:stun.l.google.com:19302"]
@@ -507,12 +512,12 @@ let isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 && nav
         this.webrtc.onnegotiationneeded = this.handleNegotiationNeeded.bind(this);
         this.webrtc.ontrack = function(event) {
           console.log(event.streams.length + ' track is delivered');
-          _this.video.srcObject = event.streams[0];
-          _this.video.play();
+          mediaStream.addTrack(event.track);
         }
         this.webrtc.addTransceiver('video', {
           'direction': 'sendrecv'
         });
+
         this.webrtcSendChannel = this.webrtc.createDataChannel('foo');
         this.webrtcSendChannel.onclose = (e) => console.log('sendChannel has closed', e);
         this.webrtcSendChannel.onopen = () => {
@@ -528,7 +533,11 @@ let isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 && nav
       this.handleNegotiationNeeded = async function() {
         var _this = this;
 
-        offer = await _this.webrtc.createOffer();
+        offer = await _this.webrtc.createOffer({
+              //iceRestart:true,
+              offerToReceiveAudio:true,
+              offerToReceiveVideo:true
+          });
         await _this.webrtc.setLocalDescription(offer);
         $.post("/stream/" + _this.uuid + "/channel/" + this.channel + "/webrtc?uuid=" + _this.uuid + "&channel=" + this.channel, {
           data: btoa(_this.webrtc.localDescription.sdp)

@@ -1,0 +1,18 @@
+[
+    {
+        "name": "anh-duc-camera",
+        "url": "rtsp://admin:11111Qaz@172.20.109.248:554/cam/realmonitor?channel=1&subtype=0"
+    },
+    {
+        "name": "anh-duc-camera2",
+        "url": "rtsp://rtsp.stream/pattern"
+    },
+    {
+        "name": "anh-duc-camera3",
+        "url": "rtsp://73.114.177.111/axis-media/media.amp"
+    },
+    {
+        "name": "anh-duc-camera4",
+        "url": "rtsp://171.25.232.136/5090ea43a82340e0b6ee75a5c41e08c4"
+    }
+]
