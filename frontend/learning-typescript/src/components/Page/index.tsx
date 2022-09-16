@@ -36,16 +36,16 @@ const sideBarItems: MenuProps["items"] = [
         key: "multiviewStreams",
     },
     {
+        label: <Link to={"/multiview/records"}>Multiview Record</Link>,
+        key: "multiviewRecords",
+    },
+    {
         label: <Link to={"/videos"}>Videos</Link>,
         key: "videos",
     },
     {
         label: <Link to={"/records"}>Records</Link>,
         key: "records",
-    },
-    {
-        label: <Link to={"/multiview/records"}>Multiview Record</Link>,
-        key: "multiviewRecords",
     },
 ];
 

@@ -1,14 +1,9 @@
 .space-align-block {
     flex: none;
-    margin-left: 5px;
     border: 1px solid #d9d9d9;
-    width: 390px;
-    height: 220px;
+    width: 341px;
+    height: 192px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-.row-block {
-    display: inline-flex;
 }

@@ -1,6 +1,7 @@
 export interface StreamState {
     isLoading: boolean;
     isSuccessful: boolean;
+    currentIndex : number;
     values: Stream[];
 }
 
