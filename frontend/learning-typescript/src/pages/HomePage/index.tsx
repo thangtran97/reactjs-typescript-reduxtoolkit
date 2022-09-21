@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
         <Page
             content={
                 <div>
-                    <Row>
+                    <Row style={{ marginTop: 24 }}>
                         <div className="space-align-block">
                             <WebrtcPlayer
                                 url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}

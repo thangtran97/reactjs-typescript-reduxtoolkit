@@ -1,5 +1,6 @@
 import React, { CSSProperties, useEffect, useRef } from "react";
 import "antd/dist/antd.css";
+import "./index.css"
 import { CloseOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
@@ -107,6 +108,7 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
 
     return (<div style={{ position: "relative" }}>
             <video
+                className="webrtc-player"
                 ref={videoRef}
                 autoPlay={true}
                 controls={true}

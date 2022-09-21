@@ -61,7 +61,7 @@ const MultiviewStream: React.FC = () => {
         <Page
             content={
                 <div>
-                    <Row style={{ width: 1400 }}>
+                    <Row style={{ width: 1400, marginTop: 24 }}>
                         <div className="space-align-block">
                             {streamUrl.url1 ?
                                 <WebrtcPlayer
