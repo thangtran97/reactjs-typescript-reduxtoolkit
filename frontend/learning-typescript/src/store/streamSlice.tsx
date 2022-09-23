@@ -2,10 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./index";
 import { GetListStreamResponse, Stream, StreamState } from "../types/StreamType";
 import StreamService from "../services/StreamService";
+import { videoSlice } from "./videoSlice";
 
 const initialState: StreamState = {
     isLoading: false,
     isSuccessful: false,
+    currentIndex: 0,
     values: []
 };
 
@@ -18,7 +20,9 @@ export const streamSlice = createSlice({
     name: "stream",
     initialState,
     reducers: {
-
+        setCurrentIndex: (state, action) => {
+            state.currentIndex = action.payload;
+        },
     },
     extraReducers: builder => {
         builder.addCase(getAllStream.pending, state => {
@@ -42,9 +46,11 @@ export const streamSlice = createSlice({
     }
 });
 
+export const { setCurrentIndex } = streamSlice.actions;
 
 export const selectIsLoading = (state: RootState) => state.stream.isLoading;
 export const selectIsSuccessful = (state: RootState) => state.stream.isSuccessful;
+export const selectCurrentIndex = (state: RootState) => state.stream.currentIndex;
 export const selectValues = (state: RootState) => state.stream.values;
 
 export default streamSlice.reducer;

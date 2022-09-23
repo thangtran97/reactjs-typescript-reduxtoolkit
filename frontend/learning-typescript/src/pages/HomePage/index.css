@@ -1,3 +1,13 @@
+.space-align-block {
+    flex: none;
+    border: 1px solid #d9d9d9;
+    width: 341px;
+    height: 192px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
 video {
     object-fit: cover;
 }
