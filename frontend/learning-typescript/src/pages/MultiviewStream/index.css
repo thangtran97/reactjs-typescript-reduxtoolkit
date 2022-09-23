@@ -1,9 +1,18 @@
 .space-align-block {
-    flex: none;
-    border: 1px solid #d9d9d9;
-    width: 341px;
-    height: 192px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    float: left;
+}
+
+.block-4x4 {
+    width: 25%;
+    height: 25%;
+}
+
+.block-3x3 {
+    width: 33.33%;
+    height: 33.33%;
+}
+
+.block-2x2 {
+    width: 50%;
+    height: 50%;
 }
