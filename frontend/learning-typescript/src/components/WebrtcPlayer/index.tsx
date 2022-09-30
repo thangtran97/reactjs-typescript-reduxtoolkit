@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect, useRef } from "react";
 import "antd/dist/antd.css";
-import "./index.css"
+import "./index.css";
 import { CloseOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
@@ -11,6 +11,7 @@ interface PropTypes {
     style?: CSSProperties;
     onClick?: React.MouseEventHandler<HTMLVideoElement>;
     onClose?: React.MouseEventHandler<HTMLVideoElement>;
+    hasClose?: boolean;
 }
 
 const config = {
@@ -118,13 +119,16 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
                 muted
                 onClick={props.onClick}
             />
-            <Button
-                style={{ position: "absolute", top: 0, left: 0, opacity: 0.8 }}
-                type="text"
-                shape="circle"
-                icon={<CloseOutlined />}
-                onClick={props.onClose}
-            />
+            {props.hasClose ?
+                <Button
+                    style={{ position: "absolute", top: 0, left: 0, opacity: 0.8 }}
+                    type="text"
+                    shape="circle"
+                    icon={<CloseOutlined />}
+                    onClick={props.onClose}
+                /> : null
+            }
+
         </div>
     );
 
