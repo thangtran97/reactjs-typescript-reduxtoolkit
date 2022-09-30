@@ -20,6 +20,7 @@
     "node-onvif": "^0.1.7",
     "node-rtsp-stream": "^0.0.9",
     "node-rtsp-stream-jsmpeg": "^0.0.2",
+    "node-schedule": "^2.1.0",
     "onvif": "^0.6.6",
     "rtsp-relay": "^1.6.1",
     "video-stitch": "^1.7.1",

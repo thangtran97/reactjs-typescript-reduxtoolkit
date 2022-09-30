@@ -66,7 +66,7 @@ app.post('/get-thumbnail', (req, res) => {
             res.send(result)
         }, 1000);
     }).catch((err) => {
-        log("MEOMEO ", err)
+        log("[ERR] ", err)
     })
 
 });

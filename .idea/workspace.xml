@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1149e140-d414-4a98-b55c-b7ae283b6d63" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/learning-typescript/src/pages/VideoPlayer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/learning-typescript/src/pages/VideoPlayer/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/learning-typescript/src/utils/axios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/learning-typescript/src/utils/axios.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/learning-typescript/yarn.lock" beforeDir="false" />
+    <list default="true" id="1149e140-d414-4a98-b55c-b7ae283b6d63" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nodejs/nvr/cameras.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nodejs/nvr/cameras.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/learning-typescript/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/learning-typescript/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/learning-typescript/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/learning-typescript/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,17 +37,10 @@
     </system>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/frontend/learning-typescript" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2CmZcSJ3WBkYDPJeUDGFpbXJL36" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -59,7 +54,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../demo" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/learning-typescript" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -104,6 +100,8 @@
       <workItem from="1659421163194" duration="4724000" />
       <workItem from="1659429408649" duration="131000" />
       <workItem from="1659429560909" duration="3142000" />
+      <workItem from="1663813163273" duration="52000" />
+      <workItem from="1663814286354" duration="18000" />
     </task>
     <servers />
   </component>
