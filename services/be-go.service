@@ -2,7 +2,7 @@
 Description=My Shell Script
 
 [Service]
-ExecStart=$NVRPATH/scripts/go-exec.sh
+ExecStart=/usr/bin/go-exec.sh
 
 [Install]
 WantedBy=multi-user.target

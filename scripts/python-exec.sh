@@ -1,2 +1,2 @@
-python3 ../backend/app.py
+python3 ${NRVPATH}/backend/app.py
 

@@ -1,2 +1,2 @@
-cd ../RTSPtoWeb_server/; go run .
+cd ${NRVPATH}/RTSPtoWeb_server/; go run .
 
