@@ -1,0 +1,8 @@
+[Unit]
+Description=My Shell Script
+
+[Service]
+ExecStart=$NVRPATH/scripts/python-exec.sh
+
+[Install]
+WantedBy=multi-user.target

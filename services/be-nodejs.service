@@ -2,7 +2,7 @@
 Description=My Shell Script
 
 [Service]
-ExecStart=/usr/bin/exec-demo.sh
+ExecStart=$NVRPATH/scripts/nodejs-exec.sh
 
 [Install]
 WantedBy=multi-user.target
