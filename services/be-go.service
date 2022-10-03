@@ -1,8 +1,11 @@
 [Unit]
-Description=My Shell Script
+Description=Go shell scripts 
 
 [Service]
-ExecStart=/usr/bin/go-exec.sh
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=${NVRPATH}/RTSPtoWeb_server/RTSPtoWeb
 
 [Install]
 WantedBy=multi-user.target

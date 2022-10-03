@@ -1,8 +1,15 @@
 [Unit]
-Description=My Shell Script
+Description=Nodejs server shell
 
 [Service]
-ExecStart=/usr/bin/nodejs-exec.sh
+ExecStart=/usr/bin/node app.js
+WorkingDirectory=$NVRPATH/backend-nodejs
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=MyApp
+Environment=NODE_ENV=production PORT=9000
 
 [Install]
 WantedBy=multi-user.target
