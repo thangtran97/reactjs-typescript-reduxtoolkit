@@ -1,2 +1,2 @@
-node ${NRVPATH}/backend-nodejs/app.js
+node ${NVRPATH}/backend-nodejs/app.js
 

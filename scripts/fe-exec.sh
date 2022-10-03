@@ -1,2 +1,2 @@
-yarn --cwd ${NRVPATH}frontend/learning-typescript start
+yarn --cwd ${NVRPATH}frontend/learning-typescript start
 
