@@ -1,15 +1,16 @@
 [Unit]
-Description=Nodejs server shell
+Description=Nodejs NVR service
 
 [Service]
-ExecStart=/usr/bin/node app.js
-WorkingDirectory=$NVRPATH/backend-nodejs
-Restart=always
+Type=simple
+
+ExecStart=/usr/bin/nodejs-exec.sh
+
+Restart=on-failure
 RestartSec=10
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=MyApp
-Environment=NODE_ENV=production PORT=9000
+SyslogIdentifier=nodejsservice
 
 [Install]
 WantedBy=multi-user.target

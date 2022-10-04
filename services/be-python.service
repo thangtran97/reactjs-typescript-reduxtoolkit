@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python3 $NVRPATH/backend/app.py
+ExecStart=/usr/bin/python3 /usr/nvr-app/python_app/app.py
 StandardInput=tty-force
 
 [Install]

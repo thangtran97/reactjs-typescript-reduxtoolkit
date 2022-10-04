@@ -1,11 +1,16 @@
 [Unit]
-Description=Go shell scripts 
+Description=Golang WebRTC app
 
 [Service]
 Type=simple
-Restart=always
-RestartSec=5s
-ExecStart=${NVRPATH}/RTSPtoWeb_server/RTSPtoWeb
+
+ExecStart=/usr/bin/go-exec.sh
+
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=appgoservice
 
 [Install]
 WantedBy=multi-user.target

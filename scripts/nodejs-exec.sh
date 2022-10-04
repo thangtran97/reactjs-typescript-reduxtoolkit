@@ -1,2 +1,4 @@
-node ${NVRPATH}/backend-nodejs/app.js
+#!/bin/bash
+
+node /usr/nvr-app/nodejs_app/app.js
 
