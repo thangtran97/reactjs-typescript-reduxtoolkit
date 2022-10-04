@@ -1,8 +1,16 @@
 [Unit]
-Description=My Shell Script
+Description=Golang WebRTC app
 
 [Service]
+Type=simple
+
 ExecStart=/usr/bin/go-exec.sh
+
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=appgoservice
 
 [Install]
 WantedBy=multi-user.target
