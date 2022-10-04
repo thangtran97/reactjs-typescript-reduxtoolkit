@@ -1,8 +1,8 @@
-import React, { CSSProperties, useEffect, useRef } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import "antd/dist/antd.css";
 import "./index.css";
-import { CloseOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
+import { Button, Spin } from "antd";
 
 interface PropTypes {
     url: string;
@@ -20,7 +20,10 @@ const config = {
     }]
 };
 
+const circleIcon = <LoadingOutlined style={{ fontSize: 32, color: "#3a414b" }} spin />;
+
 const WebrtcPlayer: React.FC<PropTypes> = (props) => {
+    const [isPlaying, setIsPlaying] = useState<boolean>(false)
     const videoRef = useRef<HTMLVideoElement>(null);
     let peerConnection: RTCPeerConnection;
     let mediaStream: MediaStream;
@@ -99,6 +102,16 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
         await setRemoteDescription();
     };
 
+    const handleDbClick = () => {
+        if (videoRef.current) {
+            videoRef.current.requestFullscreen({ navigationUI: "auto" }).catch()
+        }
+    }
+
+    const handleOnPlaying = () => {
+        setIsPlaying(true)
+    }
+
     useEffect(() => {
         startPlay().catch();
 
@@ -107,17 +120,23 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
         };
     }, []);
 
-    return (<div style={{ position: "relative" }}>
+    return (<div className="webrtc-container">
+            <Spin className="webrtc-spinner"
+                  indicator={circleIcon}
+                  spinning={!isPlaying}
+            />
             <video
-                className="webrtc-player"
                 ref={videoRef}
                 autoPlay={true}
-                controls={true}
+                controls={false}
                 style={props.style || undefined}
                 width={props.width || undefined}
                 height={props.height || undefined}
                 muted
+                onPlaying={handleOnPlaying}
+                onDoubleClick={handleDbClick}
                 onClick={props.onClick}
+
             />
             {props.hasClose ?
                 <Button
