@@ -1,8 +1,11 @@
 [Unit]
-Description=My Shell Script
+Description=Python server
+After=multi-user.target
 
 [Service]
-ExecStart=/usr/bin/python-exec.sh
+Type=simple
+ExecStart=/usr/bin/python3 /usr/nvr-app/python_app/app.py
+StandardInput=tty-force
 
 [Install]
 WantedBy=multi-user.target
