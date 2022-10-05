@@ -1,0 +1,16 @@
+[Unit]
+Description=Nodejs NVR service
+
+[Service]
+Type=simple
+
+ExecStart=/usr/bin/nodejs-exec.sh
+
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejsservice
+
+[Install]
+WantedBy=multi-user.target

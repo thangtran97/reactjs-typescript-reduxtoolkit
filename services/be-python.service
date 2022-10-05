@@ -1,0 +1,11 @@
+[Unit]
+Description=Python server
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/nvr-app/python_app/app.py
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target
