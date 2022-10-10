@@ -40,6 +40,12 @@ const MultiviewStream: React.FC = () => {
         url15: "",
         url16: ""
     });
+    const [lstMediaStream, setListMedia] = useState<MediaStream[]>([]);
+
+    const pushMediaStream = (mediaStream: MediaStream) =>{
+        lstMediaStream.push(mediaStream);
+        setListMedia(lstMediaStream);
+    }
 
     const handleSelectStream: MenuProps["onClick"] = e => {
         setStreamUrl(prevState => ({
@@ -153,6 +159,8 @@ const MultiviewStream: React.FC = () => {
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 1)}
                                         onClick={(e) => e.preventDefault()}
+                                        id={"1"}
+                                        onPushMedia={pushMediaStream}
                                     />
 
                                 : <Button
@@ -172,6 +180,7 @@ const MultiviewStream: React.FC = () => {
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 2)}
                                         onClick={(e) => e.preventDefault()}
+                                        id={"2"}
                                     />
                                     : <Button
                                         shape="circle"
@@ -190,6 +199,7 @@ const MultiviewStream: React.FC = () => {
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 3)}
                                         onClick={(e) => e.preventDefault()}
+                                        id={"3"}
                                     />
                                     : <Button
                                         shape="circle"
@@ -208,6 +218,7 @@ const MultiviewStream: React.FC = () => {
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 4)}
                                         onClick={(e) => e.preventDefault()}
+                                        id={"4"}
                                     />
                                     : <Button
                                         shape="circle"

@@ -2,7 +2,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./index.css";
 import Page from "../../components/Page";
-import { useParams } from "react-router-dom";
 import { Button, Col, Dropdown, Menu, MenuProps, Row, Select, Slider } from "antd";
 import {
     AppstoreOutlined, BorderOutlined,
@@ -15,7 +14,7 @@ import {
     SoundOutlined, StepBackwardOutlined, StepForwardOutlined, ZoomInOutlined
 } from "@ant-design/icons";
 import { SliderMarks } from "antd/es/slider";
-import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef, useTransformContext } from "react-zoom-pan-pinch";
+import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
 import html2canvas from "html2canvas";
 import { useAppDispatch } from "../../store/hooks";
 import { uploadImage } from "../../store/imageSlice";
@@ -60,7 +59,6 @@ const MultiviewRecord: React.FC = () => {
     const [dataSearch, setDataSearch] = useState<any[]>([]);
     const [elementSearch, setElementSearch] = useState<ReactElement>(<div></div>);
     const [selectedRow, setSelectedRow] = useState<number>(-1);
-    const [playButton, setPlayButton] = useState<ReactElement>();
     const [thumbnailData, setThumbnailData] = useState<any[]>([]);
     const [thumbnailImg, setThumbnailImg] = useState<ReactElement>(<div></div>);
 

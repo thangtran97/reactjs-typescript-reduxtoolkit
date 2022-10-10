@@ -12,6 +12,8 @@ interface PropTypes {
     onClick?: React.MouseEventHandler<HTMLVideoElement>;
     onClose?: React.MouseEventHandler<HTMLVideoElement>;
     hasClose?: boolean;
+    id?: string;
+    onPushMedia?: any;
 }
 
 const config = {
@@ -39,6 +41,7 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
             offerToReceiveVideo: true
         });
         await peerConnection.setLocalDescription(offer);
+        props.onPushMedia(mediaStream)
     };
 
     const onTrack = (event: RTCTrackEvent) => {
@@ -118,6 +121,7 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
                 height={props.height || undefined}
                 muted
                 onClick={props.onClick}
+                id={"stream-" + props.id}
             />
             {props.hasClose ?
                 <Button
