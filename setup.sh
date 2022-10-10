@@ -11,6 +11,6 @@ cp -a ./frontend/learning-typescript/. /usr/nvr-app/reactjs_app/ && \
 cp -a ./backend-nodejs/. /usr/nvr-app/nodejs_app/ && \
 cp -a ./scripts/. /usr/bin/; chmod 755 /usr/bin/*-exec.sh && \
 cp -a ./services/. /lib/systemd/system/ && \
-unlink /etc/nginx/sites-enabled/default && \
+unlink /etc/nginx/sites-enabled/* && \
 cp -a reactjs-app /etc/nginx/sites-available/; \
 ln -s /etc/nginx/sites-available/reactjs-app /etc/nginx/sites-enabled/

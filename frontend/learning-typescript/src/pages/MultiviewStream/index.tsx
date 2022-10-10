@@ -123,9 +123,6 @@ const MultiviewStream: React.FC = () => {
         }
     };
 
-    const onMotion = () => {
-        console.log('I get called when motion is detected')
-    }
 
     useEffect(() => {
         dispatch(getAllStream());
