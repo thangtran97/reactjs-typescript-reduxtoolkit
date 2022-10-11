@@ -1,13 +1,15 @@
 //@ts-nocheck
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import "antd/dist/antd.css";
 import "./index.css";
 import Page from "../../components/Page";
-import { Button, Menu, MenuProps, Modal, Row, Select } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getAllStream, selectValues } from "../../store/streamSlice";
+import {Button, Menu, MenuProps, Modal, Row, Select} from "antd";
+import {PlusOutlined} from "@ant-design/icons";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
+import {getAllStream, selectValues} from "../../store/streamSlice";
 import WebrtcPlayer from "../../components/WebrtcPlayer";
+import MenuCamera from "../../components/common/MenuCamera";
+
 
 const ONE_STREAM = "1";
 const FOUR_STREAM = "2";
@@ -41,8 +43,13 @@ const MultiviewStream: React.FC = () => {
         url16: ""
     });
     const [lstMediaStream, setListMedia] = useState<MediaStream[]>([]);
+    const [contextMenu, setContextMenu] = React.useState<{
+        mouseX: number;
+        mouseY: number;
+        isNotNull: boolean;
+    }>({mouseX: 0, mouseY: 0, isNotNull: false});
 
-    const pushMediaStream = (mediaStream: MediaStream) =>{
+    const pushMediaStream = (mediaStream: MediaStream) => {
         lstMediaStream.push(mediaStream);
         setListMedia(lstMediaStream);
     }
@@ -123,6 +130,27 @@ const MultiviewStream: React.FC = () => {
         }
     };
 
+    const handleContextMenu = (event: React.MouseEvent) => {
+        event.preventDefault();
+        setContextMenu(
+            !contextMenu.isNotNull
+                ? {
+                    mouseX: event.clientX + 2,
+                    mouseY: event.clientY - 6,
+                    isNotNull: true
+                }
+                :
+                {
+                    mouseX: 0,
+                    mouseY: 0,
+                    isNotNull: false
+                },
+        );
+    };
+
+    const handleCloseMenuCam = () => {
+        setContextMenu({mouseX: 0, mouseY: 0, isNotNull: false});
+    };
 
     useEffect(() => {
         dispatch(getAllStream());
@@ -132,9 +160,9 @@ const MultiviewStream: React.FC = () => {
         <Page
             content={
                 <div>
-                    <Row style={{ marginBottom: 24 }}>
+                    <Row style={{marginBottom: 24}}>
                         <Select
-                            style={{ width: "15%" }}
+                            style={{width: "15%"}}
                             value={viewMode}
                             onChange={handleChangeViewMode}
                         >
@@ -146,23 +174,22 @@ const MultiviewStream: React.FC = () => {
                             <Select.Option value={`${SIXTEEN_STREAM}`}>16 Stream</Select.Option>
                         </Select>
                     </Row>
-                    <div style={{ width: 1366, height: 768 }}>
+                    <div style={{width: 1366, height: 768}}>
                         <div id="block1" className={"space-align-block " + setBlockSize(1)}>
                             {streamUrl.url1 ?
-                                    <WebrtcPlayer
-                                        url={`http://localhost:8083/stream/${streamUrl.url1}/channel/0/webrtc?${streamUrl.url1}&channel=0`}
-                                        width={setWidth(1)}
-                                        height={setHeight(1)}
-                                        hasClose={true}
-                                        onClose={(e) => handleCloseVideo(e, 1)}
-                                        onClick={(e) => e.preventDefault()}
-                                        id={"1"}
-                                        onPushMedia={pushMediaStream}
-                                    />
+                                <WebrtcPlayer
+                                    url={`http://localhost:8083/stream/${streamUrl.url1}/channel/0/webrtc?${streamUrl.url1}&channel=0`}
+                                    width={setWidth(1)}
+                                    height={setHeight(1)}
+                                    hasClose={true}
+                                    onClose={(e) => handleCloseVideo(e, 1)}
+                                    onClick={handleContextMenu}
+                                    id={"1"}
+                                />
 
                                 : <Button
                                     shape="circle"
-                                    icon={<PlusOutlined />}
+                                    icon={<PlusOutlined/>}
                                     size="large"
                                     onClick={(e) => handleClick(e, 1)}
                                 />}
@@ -176,16 +203,16 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 2)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                         id={"2"}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 2)}
                                     />}
-                            </div>): null}
+                            </div>) : null}
                         {(viewMode != ONE_STREAM) ?
                             (<div id="block3" className={"space-align-block " + setBlockSize()}>
                                 {streamUrl.url3 ?
@@ -195,16 +222,16 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 3)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                         id={"3"}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 3)}
                                     />}
-                            </div>): null}
+                            </div>) : null}
                         {(viewMode != ONE_STREAM) ?
                             (<div id="block4" className={"space-align-block " + setBlockSize()}>
                                 {streamUrl.url4 ?
@@ -214,16 +241,16 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 4)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                         id={"4"}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 4)}
                                     />}
-                            </div>): null}
+                            </div>) : null}
 
                         {(viewMode == SIX_STREAM || viewMode == NINE_STREAM || viewMode == THIRTEEN_STREAM || viewMode == SIXTEEN_STREAM) ?
                             (<div id="block5" className={"space-align-block " + setBlockSize()}>
@@ -234,11 +261,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 5)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 5)}
                                     />}
@@ -252,11 +279,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight(6)}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 6)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 6)}
                                     />}
@@ -270,11 +297,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 7)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 7)}
                                     />}
@@ -288,11 +315,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 8)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 8)}
                                     />}
@@ -306,11 +333,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 9)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 9)}
                                     />}
@@ -324,11 +351,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 10)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 10)}
                                     />}
@@ -342,11 +369,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 11)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 11)}
                                     />}
@@ -360,11 +387,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 12)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 12)}
                                     />}
@@ -378,11 +405,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 13)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 13)}
                                     />}
@@ -396,11 +423,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 14)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 14)}
                                     />}
@@ -414,11 +441,11 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 15)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 15)}
                                     />}
@@ -432,16 +459,23 @@ const MultiviewStream: React.FC = () => {
                                         height={setHeight()}
                                         hasClose={true}
                                         onClose={(e) => handleCloseVideo(e, 16)}
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={handleContextMenu}
                                     />
                                     : <Button
                                         shape="circle"
-                                        icon={<PlusOutlined />}
+                                        icon={<PlusOutlined/>}
                                         size="large"
                                         onClick={(e) => handleClick(e, 16)}
                                     />}
                             </div>) : null}
+
                     </div>
+                    {contextMenu.isNotNull ?
+                        <MenuCamera mouseX={contextMenu.mouseX}
+                                    mouseY={contextMenu.mouseY}
+                                    onClose={handleCloseMenuCam}/>
+                    : <></>}
+
                     <Modal
                         title="Select stream"
                         open={isModalOpen}
