@@ -323,7 +323,7 @@ const LiveView: React.FC = () => {
                                         <Button
                                             style={{ left: 100 }}
                                             type="text"
-                                            icon={<CloseOutlined className="icon-close" />}
+                                            icon={<CloseOutlined style={{fontSize: 22, color: "gray"}} />}
                                             size="small"
                                             onClick={() => setOpenRecordMenu(false)}
                                         />
