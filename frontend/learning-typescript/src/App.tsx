@@ -8,6 +8,7 @@ import Record from "./pages/Records";
 import RecordPlayer from "./pages/RecordPlayer";
 import MultiviewStream from "./pages/MultiviewStream";
 import MultiviewRecord from "./pages/MultiviewRecord";
+import LiveView from "./pages/LiveView";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/multiview/records" element={<MultiviewRecord />} />
                 <Route path="/videos/play/:id" element={<VideoPlayer />} />
                 <Route path="/records/play/:name" element={<RecordPlayer />} />
+                <Route path="/live" element={<LiveView />} />
             </Routes>
         </div>
     );

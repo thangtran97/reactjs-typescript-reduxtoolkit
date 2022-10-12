@@ -1,0 +1,105 @@
+.record-container {
+    position: relative;
+    max-width: 1280px;
+    width: 100%;
+    max-height: 720px;
+    height: 100%;
+}
+
+.status-bar-container {
+    position: absolute;
+    bottom: 0;
+    width: 306px;
+    height: 66px;
+}
+
+.video-container:hover + .status-bar-container {
+    opacity: 0.8;
+    transition: .1s;
+}
+
+.status-bar:hover {
+    opacity: 0.8;
+    transition: .1s;
+}
+
+.status-bar {
+    /*opacity: 0;*/
+    transition: all .4s ease 5s;
+    background: linear-gradient(to right, #231815, #3e3a39, #231815);
+    width: 306px;
+    height: 66px;
+    /*opacity: 0.8;*/
+    position: absolute;
+    bottom: 0;
+    left: 150%;
+    border-radius: 3px 3px 0 0;
+    animation-delay: 1s;
+}
+
+.layout-menu {
+    background: #2A2729;
+    width: 106px;
+    height: 128px;
+    position: absolute;
+    bottom: 0;
+    left: 306px;
+}
+
+.btn-setting-layout-customize {
+    background: gray;
+    color: white;
+    padding: 0;
+    width: 55px;
+    height: 22px;
+    font-size: 10px;
+}
+
+.icon-22 {
+    width: 22px;
+    height: 22px;
+}
+
+.status-line {
+    height: 2px;
+    background: linear-gradient(to right, #F9B8BA, #F9758F, #F9B8BA)
+}
+
+.select-layout-customize {
+    background: #3d383c;
+    width: 53px;
+    height: 128px;
+    position: absolute;
+    bottom: 0;
+    left: 412px;
+}
+
+.setting-layout-customize-info {
+    color: white;
+    align-self: center;
+    width: 25px;
+    height: 20px;
+    background: gray;
+    padding-left: 3px;
+    margin-left: 3px;
+}
+
+.setting-layout-customize-info-list {
+    height: 96px;
+    overflow-y: auto;
+    color: white;
+    padding-left: 5px;
+}
+
+.record-bar {
+    width: 158px;
+    height: 590px;
+    background: linear-gradient(to right, #0E1015, #2F3A46);
+    border-radius: 0 12px 12px 0;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #2989C2;
+    /*border-image: linear-gradient(to right, #82F0FF, #2989C2) 1;*/
+    position: absolute;
+    bottom: 75px;
+}

@@ -32,6 +32,10 @@ const navBarItems: MenuProps["items"] = [
 
 const sideBarItems: MenuProps["items"] = [
     {
+        label: <Link to={"/live"}>Live View</Link>,
+        key: "live",
+    },
+    {
         label: <Link to={"/multiview/streams"}>Multiview Stream</Link>,
         key: "multiviewStreams",
     },
