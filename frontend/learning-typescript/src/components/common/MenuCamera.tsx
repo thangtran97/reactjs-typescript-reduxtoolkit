@@ -46,7 +46,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
         <Draggable>
             <div style={menuStyle} className={'menu-camera menu-cam-bd'}>
                 <div className={'menu-cam-header'}>
-                    <img src={window.location.origin + '/icons/camera-menu/camera-menu.png'}
+                    <img src="icons/camera-menu/camera-menu.png"
                          className={'icon icon-22 icon-line'}/>
                     <a href="#javascript" className="close-btn" onClick={closeMenu}></a>
 
@@ -55,7 +55,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                     <a href="#"
                        className={'menu-cam-link'}>
 
-                        <img src={window.location.origin + '/icons/camera-menu/electronic-zoom.png'}
+                        <img src="icons/camera-menu/electronic-zoom.png"
                              className={'icon icon-24 icon-line'}/>
                         電子ズーム
                     </a>
@@ -64,11 +64,11 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                             <div className={'zoomable-control-view'}>
                             </div>
                             <div className={'zoomable-control-bar d-flex justify-content-center'}>
-                                <img src={window.location.origin + '/icons/camera-menu/play-menu.png'}
+                                <img src="icons/camera-menu/play-menu.png"
                                      className={'icon icon-34'} onClick={zoomOut} />
                                 <span className={'zoom-number d-flex align-items-center'}>{zoomNumber}</span>
                                 <span className={'zoom-x'}>x</span>
-                                <img src={window.location.origin + '/icons/camera-menu/electronic-zoom.png'}
+                                <img src="icons/camera-menu/electronic-zoom.png"
                                      className={'icon icon-34'} onClick={zoomIn}/>
                             </div>
                         </li>
@@ -78,7 +78,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover'}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/omnidirectional.png'}
+                        <img src="icons/camera-menu/omnidirectional.png"
                              className={'icon icon-24 icon-line'}/>
                         全方位カメラ
                     </a>
@@ -87,7 +87,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover'}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/PTZ-Camera.png'}
+                        <img src="icons/camera-menu/PTZ-Camera.png"
                              className={'icon icon-24 icon-line'}/>
                         PTZ
                     </a>
@@ -96,7 +96,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover'}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/easy-play.png'}
+                        <img src="icons/camera-menu/easy-play.png"
                              className={'icon icon-24 icon-line'}/>
                         再生
                     </a>
@@ -105,7 +105,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/cam-voice.png'}
+                        <img src="icons/camera-menu/cam-voice.png"
                              className={'icon icon-24 icon-line'}/>
                         カメラ音声
                     </a>
@@ -114,7 +114,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/cam-input-output.png'}
+                        <img src="icons/camera-menu/cam-input-output.png"
                              className={'icon icon-24 icon-line'}/>
                         カメラ接点入出力
                     </a>
@@ -123,7 +123,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/manual-recording.png'}
+                        <img src="icons/camera-menu/manual-recording.png"
                              className={'icon icon-24 icon-line'}/>
                         手動記録
                     </a>
@@ -132,7 +132,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/snapshot.png'}
+                        <img src="icons/camera-menu/snapshot.png"
                              className={'icon icon-24 icon-line'}/>
                         スナップショット
                     </a>
