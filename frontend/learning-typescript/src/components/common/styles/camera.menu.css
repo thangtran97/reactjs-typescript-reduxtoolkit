@@ -62,7 +62,8 @@
     width: 194px;
     height: 158px;
     background: linear-gradient(to right, #0e1015 , #2f3a46);
-    border-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
     border: #82f0ff solid 1px;
 }
 
