@@ -15,6 +15,7 @@ interface PropTypes {
 
 const MenuCamera: React.FC<PropTypes> = (props) => {
     const [menuStyle, setStyle] = useState<object>({});
+    const [zoomNumber, setZoomNumber] = useState<number>(1);
 
     useEffect(() => {
         setStyle({
@@ -29,6 +30,18 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
         props.onClose();
     }
 
+    const zoomIn = () => {
+        if (zoomNumber < 6) {
+            setZoomNumber(zoomNumber + 1);
+        }
+    }
+
+    const zoomOut = () => {
+        if (zoomNumber > 1) {
+            setZoomNumber(zoomNumber - 1);
+        }
+    }
+
     return (
         <Draggable>
             <div style={menuStyle} className={'menu-camera menu-cam-bd'}>
@@ -41,13 +54,23 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover'}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/PTZ-Camera.png'}
+
+                        <img src={window.location.origin + '/icons/camera-menu/electronic-zoom.png'}
                              className={'icon icon-24 icon-line'}/>
-                        PTZ
+                        電子ズーム
                     </a>
                     <ul className={'menu-cam-children'}>
                         <li className={'menu-cam-item'}>
-                            dsada
+                            <div className={'zoomable-control-view'}>
+                            </div>
+                            <div className={'zoomable-control-bar d-flex justify-content-center'}>
+                                <img src={window.location.origin + '/icons/camera-menu/play-menu.png'}
+                                     className={'icon icon-34'} onClick={zoomOut} />
+                                <span className={'zoom-number d-flex align-items-center'}>{zoomNumber}</span>
+                                <span className={'zoom-x'}>x</span>
+                                <img src={window.location.origin + '/icons/camera-menu/electronic-zoom.png'}
+                                     className={'icon icon-34'} onClick={zoomIn}/>
+                            </div>
                         </li>
                     </ul>
                 </li>
@@ -64,9 +87,9 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover'}>
                     <a href="#"
                        className={'menu-cam-link'}>
-                        <img src={window.location.origin + '/icons/camera-menu/electronic-zoom.png'}
+                        <img src={window.location.origin + '/icons/camera-menu/PTZ-Camera.png'}
                              className={'icon icon-24 icon-line'}/>
-                        電子ズーム
+                        PTZ
                     </a>
                 </li>
 
