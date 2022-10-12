@@ -7,12 +7,19 @@ import { useAppDispatch } from "../../store/hooks";
 import WebrtcPlayer from "../../components/WebrtcPlayer";
 import { CaretDownOutlined, CloseOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import MenuCamera from "../../components/common/MenuCamera";
 
 const LiveView: React.FC = () => {
     const [openRecordMenu, setOpenRecordMenu] = useState(true);
     const [openLayoutMenu, setOpenLayoutMenu] = useState(true);
     const [openSelectLayoutCustomize, setOpenSelectLayoutCustomize] = useState(false);
     const [openKeys, setOpenKeys] = useState([]);
+    const [contextMenu, setContextMenu] = React.useState<{
+        mouseX: number;
+        mouseY: number;
+        isNotNull: boolean;
+    }>({mouseX: 0, mouseY: 0, isNotNull: false});
+
     const rootSubmenuKeys = ["search", "setting", "recorder", "maintenance"];
     let videoContainerRef = useRef(null);
     const dispatch = useAppDispatch();
@@ -97,6 +104,28 @@ const LiveView: React.FC = () => {
         }
     };
 
+    const handleContextMenu = (event: React.MouseEvent) => {
+        event.preventDefault();
+        setContextMenu(
+            !contextMenu.isNotNull
+                ? {
+                    mouseX: event.clientX + 2,
+                    mouseY: event.clientY - 6,
+                    isNotNull: true
+                }
+                :
+                {
+                    mouseX: 0,
+                    mouseY: 0,
+                    isNotNull: false
+                },
+        );
+    };
+
+    const handleCloseMenuCam = () => {
+        setContextMenu({mouseX: 0, mouseY: 0, isNotNull: false});
+    };
+
     return (
         <Page
             content={
@@ -107,6 +136,7 @@ const LiveView: React.FC = () => {
                                 url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
                                 width={1280}
                                 height={720}
+                                onClick={handleContextMenu}
                             />
                         </div>
                         <div className="status-bar-container">
@@ -309,6 +339,11 @@ const LiveView: React.FC = () => {
 
                         </div>
                     </div>
+                    {contextMenu.isNotNull ?
+                        <MenuCamera mouseX={contextMenu.mouseX}
+                                    mouseY={contextMenu.mouseY}
+                                    onClose={handleCloseMenuCam}/>
+                        : <></>}
                 </div>
             }
         />
