@@ -24,7 +24,7 @@
 }
 
 .status-bar {
-    /*opacity: 0;*/
+    opacity: 0;
     transition: all .4s ease 5s;
     background: linear-gradient(to right, #231815, #3e3a39, #231815);
     width: 306px;
@@ -92,6 +92,7 @@
 }
 
 .record-bar {
+    opacity: 0.8;
     width: 158px;
     height: 590px;
     background: linear-gradient(to right, #0E1015, #2F3A46);
@@ -104,29 +105,21 @@
     bottom: 75px;
 }
 
-.icon-close {
-    color: gray;
-    align-items: center;
-    font-size: 20px;
-}
-
 .ant-menu-dark {
     background: linear-gradient(to right, #0E1015, #2F3A46) !important;
 }
 
-/*.ant-menu-submenu {*/
-/*    height: 30px !important;*/
+/*.ant-menu-submenu-active {*/
+/*    background: linear-gradient(to bottom, #64C8FF, #3082A5) !important;*/
 /*}*/
-
-.ant-menu-submenu-active {
-    background: linear-gradient(to bottom, #64C8FF, #3082A5) !important;
-}
 
 .ant-menu-submenu-open {
     background: linear-gradient(to bottom, #64C8FF, #3082A5) !important;
 }
 
 .ant-menu-item {
+    font-family: "Hiragino";
+    font-size: 10px;
     background: #64C8FF !important;
     padding-left: 30px !important;
     margin-top: 3px !important;
@@ -140,15 +133,18 @@
 }
 
 .ant-menu-submenu-title {
+    font-family: "Hiragino";
+    font-size: 15px !important;
     padding-left: 5px !important;
+    margin: 0px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
 }
 
 .ant-menu-item-selected {
-    /*width: 148px !important;*/
-    /*padding-left: 25px !important;*/
-    background: #2f3a46 30% !important;
+    background: rgba(47, 58, 70, 0.3)  !important;
 }
 
-.ant-menu-item-active {
-    background: #2f3a46 30% !important;
-}
+/*.ant-menu-item-active {*/
+/*    background: #2f3a46 30% !important;*/
+/*}*/
