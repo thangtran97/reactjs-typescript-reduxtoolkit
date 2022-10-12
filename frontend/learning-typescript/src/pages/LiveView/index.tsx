@@ -2,15 +2,100 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./index.css";
 import Page from "../../components/Page";
-import { Button, Col, Row, Select } from "antd";
+import { Button, Col, Menu, MenuProps, Row, Select } from "antd";
 import { useAppDispatch } from "../../store/hooks";
 import WebrtcPlayer from "../../components/WebrtcPlayer";
-import { CaretDownOutlined } from "@ant-design/icons";
+import { CaretDownOutlined, CloseOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const LiveView: React.FC = () => {
+    const [openRecordMenu, setOpenRecordMenu] = useState(true);
+    const [openLayoutMenu, setOpenLayoutMenu] = useState(true);
     const [openSelectLayoutCustomize, setOpenSelectLayoutCustomize] = useState(false);
+    const [openKeys, setOpenKeys] = useState([]);
+    const rootSubmenuKeys = ["search", "setting", "recorder", "maintenance"];
     let videoContainerRef = useRef(null);
     const dispatch = useAppDispatch();
+
+    const recordMenuItems: MenuProps["items"] = [
+        {
+            label: "検索",
+            icon: <img className="icon-22" src="/icons/sidebar/search-play-menu.png" />,
+            key: "search",
+            children: [
+                {
+                    key: "search1",
+                    label: "ＯＯＯＯ"
+                },
+                {
+                    key: "search2",
+                    label: "ＯＯＯＯ"
+                },
+                {
+                    key: "search3",
+                    label: "ＯＯＯＯ"
+                },
+                {
+                    key: "search4",
+                    label: "ＯＯＯＯ"
+                }
+            ]
+        },
+        {
+            label: "設定",
+            icon: <img className="icon-22" src="/icons/sidebar/settings-menu.png" />,
+            key: "setting",
+            children: [
+                {
+                    key: "setting1",
+                    label: "ＯＯＯＯ"
+                },
+                {
+                    key: "setting2",
+                    label: "ＯＯＯＯ"
+                },
+                {
+                    key: "setting3",
+                    label: "ＯＯＯＯ"
+                }
+            ]
+        },
+        {
+            label: "履歴",
+            icon: <img className="icon-22" src="/icons/sidebar/recorder-menu.png" />,
+            key: "recorder",
+            children: [
+                {
+                    key: "recorder1",
+                    label: "ＯＯＯＯ"
+                },
+                {
+                    key: "recorder2",
+                    label: "ＯＯＯＯ"
+                }
+            ]
+        },
+        {
+            label: "保守",
+            icon: <img className="icon-22" src="/icons/sidebar/maintenance-menu.png" />,
+            key: "maintenance",
+            children: [
+                {
+                    key: "maintenance1",
+                    label: "ＯＯＯＯ"
+                }
+            ]
+        }
+    ];
+
+    const onOpenChange: MenuProps["onOpenChange"] = keys => {
+        const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
+        if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
+            setOpenKeys(keys);
+        } else {
+            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+        }
+    };
 
     return (
         <Page
@@ -51,7 +136,7 @@ const LiveView: React.FC = () => {
                                 <Row style={{ height: 32 }}>
                                     <Col span={1} />
                                     <Col span={17}>
-                                        <img style={{ width: 50 }} src="/icons/secom_logo.png" />
+                                        <img style={{ width: 50 }} src="/icons/secom-logo.png" />
                                     </Col>
                                     <Col span={3}>
                                         <Button
@@ -59,6 +144,7 @@ const LiveView: React.FC = () => {
                                             icon={<img className="icon-22"
                                                        src="/icons/status-bar/recorder-menu.png" />}
                                             size="small"
+                                            onClick={() => setOpenRecordMenu(!openRecordMenu)}
                                         />
                                     </Col>
                                     <Col span={3}>
@@ -67,108 +153,111 @@ const LiveView: React.FC = () => {
                                             icon={<img className="icon-22"
                                                        src="/icons/status-bar/layout-change.png" />}
                                             size="small"
+                                            onClick={() => setOpenLayoutMenu(!openLayoutMenu)}
                                         />
                                     </Col>
                                 </Row>
-                                <div className="layout-menu">
-                                    <Row style={{ height: 32, alignContent: "center" }}>
-                                        <Button
-                                            type="text"
-                                            icon={<img className="icon-22"
-                                                       src="/icons/status-bar/previous.png" />}
-                                            size="small"
-                                        />
-                                        <div style={{ color: "white", alignSelf: "center" }}>
-                                            4/16
+                                {openLayoutMenu ?
+                                    <div className="layout-menu">
+                                        <Row style={{ height: 32, alignContent: "center" }}>
+                                            <Button
+                                                type="text"
+                                                icon={<img className="icon-22"
+                                                           src="/icons/status-bar/previous.png" />}
+                                                size="small"
+                                            />
+                                            <div style={{ color: "white", alignSelf: "center" }}>
+                                                4/16
+                                            </div>
+                                            <Button
+                                                type="text"
+                                                icon={<img className="icon-22"
+                                                           src="/icons/status-bar/next.png" />}
+                                                size="small"
+                                            />
+                                            <Button
+                                                type="text"
+                                                icon={<img className="icon-22"
+                                                           src="/icons/status-bar/sequential-execution.png" />}
+                                                size="small"
+                                            />
+                                        </Row>
+                                        <Row style={{ height: 1, background: "gray" }}></Row>
+                                        <div style={{ height: 96 }}>
+                                            <Row style={{ textAlign: "center" }}>
+                                                <Col span={8}>
+                                                    <Button
+                                                        type="text"
+                                                        icon={<img className="icon-22"
+                                                                   src="/icons/status-bar/1x1-screen.png" />}
+                                                        size="small"
+                                                    />
+                                                </Col>
+                                                <Col span={8}>
+                                                    <Button
+                                                        type="text"
+                                                        icon={<img className="icon-22"
+                                                                   src="/icons/status-bar/2x2-screen.png" />}
+                                                        size="small"
+                                                    />
+                                                </Col>
+                                                <Col span={8}>
+                                                    <Button
+                                                        type="text"
+                                                        icon={<img className="icon-22"
+                                                                   src="/icons/status-bar/3x3-screen.png" />}
+                                                        size="small"
+                                                    />
+                                                </Col>
+                                            </Row>
+                                            <Row style={{ textAlign: "center" }}>
+                                                <Col span={8}>
+                                                    <Button
+                                                        type="text"
+                                                        icon={<img className="icon-22"
+                                                                   src="/icons/status-bar/4x3-screen.png" />}
+                                                        size="small"
+                                                    />
+                                                </Col>
+                                                <Col span={8}>
+                                                    <Button
+                                                        type="text"
+                                                        icon={<img className="icon-22"
+                                                                   src="/icons/status-bar/4x4-screen.png" />}
+                                                        size="small"
+                                                    />
+                                                </Col>
+                                                <Col span={8}>
+                                                    <Button
+                                                        type="text"
+                                                        icon={<img className="icon-22"
+                                                                   src="/icons/status-bar/3-display-screen.png" />}
+                                                        size="small"
+                                                    />
+                                                </Col>
+                                            </Row>
+                                            <Row style={{ textAlign: "center" }}>
+                                                <Col span={8}>
+                                                    <Button
+                                                        type="text"
+                                                        icon={<img className="icon-22"
+                                                                   src="/icons/status-bar/6-display-screen.png" />}
+                                                        size="small"
+                                                    />
+                                                </Col>
+                                                <Col style={{ alignSelf: "end" }} span={16}>
+                                                    <Button
+                                                        className="btn-setting-layout-customize"
+                                                        onClick={() => setOpenSelectLayoutCustomize(!openSelectLayoutCustomize)}
+                                                    >
+                                                        カスタム
+                                                    </Button>
+                                                </Col>
+                                            </Row>
                                         </div>
-                                        <Button
-                                            type="text"
-                                            icon={<img className="icon-22"
-                                                       src="/icons/status-bar/next.png" />}
-                                            size="small"
-                                        />
-                                        <Button
-                                            type="text"
-                                            icon={<img className="icon-22"
-                                                       src="/icons/status-bar/sequential-execution.png" />}
-                                            size="small"
-                                        />
-                                    </Row>
-                                    <Row style={{ height: 1, background: "gray" }}></Row>
-                                    <div style={{ height: 96 }}>
-                                        <Row style={{ textAlign: "center" }}>
-                                            <Col span={8}>
-                                                <Button
-                                                    type="text"
-                                                    icon={<img className="icon-22"
-                                                               src="/icons/status-bar/1x1-screen.png" />}
-                                                    size="small"
-                                                />
-                                            </Col>
-                                            <Col span={8}>
-                                                <Button
-                                                    type="text"
-                                                    icon={<img className="icon-22"
-                                                               src="/icons/status-bar/2x2-screen.png" />}
-                                                    size="small"
-                                                />
-                                            </Col>
-                                            <Col span={8}>
-                                                <Button
-                                                    type="text"
-                                                    icon={<img className="icon-22"
-                                                               src="/icons/status-bar/3x3-screen.png" />}
-                                                    size="small"
-                                                />
-                                            </Col>
-                                        </Row>
-                                        <Row style={{ textAlign: "center" }}>
-                                            <Col span={8}>
-                                                <Button
-                                                    type="text"
-                                                    icon={<img className="icon-22"
-                                                               src="/icons/status-bar/4x3-screen.png" />}
-                                                    size="small"
-                                                />
-                                            </Col>
-                                            <Col span={8}>
-                                                <Button
-                                                    type="text"
-                                                    icon={<img className="icon-22"
-                                                               src="/icons/status-bar/4x4-screen.png" />}
-                                                    size="small"
-                                                />
-                                            </Col>
-                                            <Col span={8}>
-                                                <Button
-                                                    type="text"
-                                                    icon={<img className="icon-22"
-                                                               src="/icons/status-bar/3-display-screen.png" />}
-                                                    size="small"
-                                                />
-                                            </Col>
-                                        </Row>
-                                        <Row style={{ textAlign: "center" }}>
-                                            <Col span={8}>
-                                                <Button
-                                                    type="text"
-                                                    icon={<img className="icon-22"
-                                                               src="/icons/status-bar/6-display-screen.png" />}
-                                                    size="small"
-                                                />
-                                            </Col>
-                                            <Col style={{ alignSelf: "end" }} span={16}>
-                                                <Button
-                                                    className="btn-setting-layout-customize"
-                                                    onClick={() => setOpenSelectLayoutCustomize(!openSelectLayoutCustomize)}
-                                                >
-                                                    カスタム
-                                                </Button>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                </div>
-                                {openSelectLayoutCustomize ?
+                                    </div> : null}
+
+                                {openSelectLayoutCustomize && openLayoutMenu ?
                                     <div className="select-layout-customize">
                                         <Row style={{ height: 32, alignContent: "center" }}>
                                             <div className="setting-layout-customize-info">
@@ -191,9 +280,33 @@ const LiveView: React.FC = () => {
                                         </div>
                                     </div> : null}
                             </div>
-                            <div className="record-bar">
+                            {openRecordMenu ?
+                                <div className="record-bar">
+                                    <Row style={{ height: 32, alignContent: "center" }}>
+                                        <Button
+                                            style={{ marginLeft: 5 }}
+                                            type="text"
+                                            icon={<img className="icon-22"
+                                                       src="/icons/status-bar/recorder-menu.png" />}
+                                            size="small"
+                                        />
+                                        <Button
+                                            style={{ left: 100 }}
+                                            type="text"
+                                            icon={<CloseOutlined className="icon-close" />}
+                                            size="small"
+                                            onClick={() => setOpenRecordMenu(false)}
+                                        />
+                                    </Row>
+                                    <Menu
+                                        theme="dark"
+                                        mode="inline"
+                                        openKeys={openKeys}
+                                        onOpenChange={onOpenChange}
+                                        items={recordMenuItems}
+                                    />
+                                </div> : null}
 
-                            </div>
                         </div>
                     </div>
                 </div>
