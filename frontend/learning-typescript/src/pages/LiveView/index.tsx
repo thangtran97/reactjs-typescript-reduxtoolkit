@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import MenuCamera from "../../components/common/MenuCamera";
 
 const LiveView: React.FC = () => {
-    const [openRecordMenu, setOpenRecordMenu] = useState(true);
+    const [openRecordMenu, setOpenRecordMenu] = useState(false);
     const [openLayoutMenu, setOpenLayoutMenu] = useState(true);
     const [openSelectLayoutCustomize, setOpenSelectLayoutCustomize] = useState(false);
     const [openKeys, setOpenKeys] = useState([]);
