@@ -1,8 +1,8 @@
-import React, { CSSProperties, useEffect, useRef, useState } from "react";
+import React, {CSSProperties, useEffect, useRef, useState} from "react";
 import "antd/dist/antd.css";
 import "./index.css";
-import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
-import { Button, Spin } from "antd";
+import {CloseOutlined, LoadingOutlined} from "@ant-design/icons";
+import {Button, Spin} from "antd";
 
 interface PropTypes {
     url: string;
@@ -13,7 +13,6 @@ interface PropTypes {
     onClose?: React.MouseEventHandler<HTMLVideoElement>;
     hasClose?: boolean;
     id?: string;
-    onPushMedia?: any;
 }
 
 const config = {
@@ -22,7 +21,7 @@ const config = {
     }]
 };
 
-const circleIcon = <LoadingOutlined style={{ fontSize: 32, color: "#3a414b" }} spin />;
+const circleIcon = <LoadingOutlined style={{fontSize: 32, color: "#3a414b"}} spin/>;
 
 const WebrtcPlayer: React.FC<PropTypes> = (props) => {
     const [isPlaying, setIsPlaying] = useState<boolean>(false)
@@ -44,7 +43,7 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
             offerToReceiveVideo: true
         });
         await peerConnection.setLocalDescription(offer);
-        props.onPushMedia(mediaStream)
+
     };
 
     const onTrack = (event: RTCTrackEvent) => {
@@ -55,7 +54,7 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
         // let url = "http://localhost:8083/stream/6279629d-eb8e-4b87-a03f-43adb05f2ecc/channel/0/webrtc?uuid=6279629d-eb8e-4b87-a03f-43adb05f2ecc&channel=0";
         let requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+            headers: {"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"},
             body: new URLSearchParams({
                 data: window.btoa(peerConnection.localDescription?.sdp || "")
             })
@@ -107,7 +106,7 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
 
     const handleDbClick = () => {
         if (videoRef.current) {
-            videoRef.current.requestFullscreen({ navigationUI: "auto" }).catch()
+            videoRef.current.requestFullscreen({navigationUI: "auto"}).catch()
         }
     }
 
@@ -123,7 +122,8 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
         };
     }, []);
 
-    return (<div className="webrtc-container">
+    return (
+        <div className="webrtc-container">
             <Spin className="webrtc-spinner"
                   indicator={circleIcon}
                   spinning={!isPlaying}
@@ -143,10 +143,10 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
             />
             {props.hasClose ?
                 <Button
-                    style={{ position: "absolute", top: 0, left: 0, opacity: 0.8 }}
+                    style={{position: "absolute", top: 0, left: 0, opacity: 0.8}}
                     type="text"
                     shape="circle"
-                    icon={<CloseOutlined />}
+                    icon={<CloseOutlined/>}
                     onClick={props.onClose}
                 /> : null
             }

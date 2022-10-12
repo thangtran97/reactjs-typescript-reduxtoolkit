@@ -1,0 +1,116 @@
+.menu-camera {
+    height: 270px;
+    background-color: #3a414b;
+    color: #ffffff;
+    font-family: "Hiragino";
+}
+
+.menu-cam-bd {
+    border-radius: 10px;
+    border: #40a9ff solid 1px;
+}
+
+.menu-cam-header {
+    width: 158px;
+    height: 32px;
+}
+
+.menu-cam-line {
+    width: 158px;
+    height: 30px;
+    font-size: 15px;
+    list-style-type: none;
+}
+.menu-cam-item {
+    list-style-type: none;
+}
+
+.menu-cam-link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.menu-cam-link:hover {
+    color: #ffffff;
+}
+
+.context-menu-head {
+    height: 32px;
+}
+
+.menu-cam-allow-hover:hover {
+    background-color: #40a9ff;
+    color: rgba(255, 255, 255, 0);
+}
+
+.menu-cam-allow-hover {
+    background-color: #3a414b;
+    color: rgba(255, 255, 255, 40);
+    cursor: pointer;
+}
+
+.menu-cam-children {
+    display: none;
+    position: absolute;
+    left: calc(1px + 100%);
+    top: 32px;
+    margin: 0;
+    padding: 0;
+    z-index: 3;
+    width: 194px;
+    height: 158px;
+    background-color: #3a414b;
+}
+
+.menu-cam-has-children:hover > .menu-cam-children{
+    display: block;
+    position: absolute;
+}
+
+.close-btn {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 22px;
+    height: 22px;
+    opacity: 0.4;
+}
+
+.close-btn:hover {
+    opacity: 0.7;
+}
+
+.close-btn:before, .close-btn:after {
+    position: absolute;
+    content: ' ';
+    height: 22px;
+    width: 2px;
+    background-color: #ffffff;
+}
+
+.close-btn:before {
+    transform: rotate(45deg);
+}
+
+.close-btn:after {
+    transform: rotate(-45deg);
+}
+
+.icon-line {
+    margin-right: 8px;
+}
+
+.icon-22 {
+    width: 22px;
+    height: 22px;
+}
+
+.icon-24 {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-34 {
+    width: 34px;
+    height: 34px;
+}

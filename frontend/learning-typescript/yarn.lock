@@ -3338,6 +3338,11 @@ cliui@^7.0.2:
     strip-ansi "^6.0.0"
     wrap-ansi "^7.0.0"
 
+clsx@^1.1.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
+  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -8246,6 +8251,14 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-draggable@^4.4.5:
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-4.4.5.tgz#9e37fe7ce1a4cf843030f521a0a4cc41886d7e7c"
+  integrity sha512-OMHzJdyJbYTZo4uQE393fHcqqPYsEtkjfMgvCHr6rejT+Ezn4OZbNyGH50vv+SunC1RMvwOTSWkEODQLzw1M9g==
+  dependencies:
+    clsx "^1.1.1"
+    prop-types "^15.8.1"
+
 react-error-overlay@^6.0.11:
   version "6.0.11"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.11.tgz#92835de5841c5cf08ba00ddd2d677b6d17ff9adb"
@@ -8278,6 +8291,11 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
+react-motion-detect@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-motion-detect/-/react-motion-detect-1.0.3.tgz#01a966ff64883d730415aa75e9000f62caa0b694"
+  integrity sha512-9HCxZRvDbW8Ff1SpEApUNNIGonjXtOM0GyGJL05kIHlkDKWnlP8meSyqHpzL0LZsA+IbDwHlvmtb8w/sPHSvhw==
+
 react-multi-select-component@^4.3.3:
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/react-multi-select-component/-/react-multi-select-component-4.3.3.tgz#142c0c9b51a3dbe99d117e90eaa14f48041174b6"
@@ -8287,11 +8305,6 @@ react-onclickoutside@^6.12.0:
   version "6.12.2"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.12.2.tgz#8e6cf80c7d17a79f2c908399918158a7b02dda01"
   integrity sha512-NMXGa223OnsrGVp5dJHkuKxQ4czdLmXSp5jSV9OqiCky9LOpPATn3vLldc+q5fK3gKbEHvr7J1u0yhBh/xYkpA==
-
-react-motion-detect@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-motion-detect/-/react-motion-detect-1.0.3.tgz#01a966ff64883d730415aa75e9000f62caa0b694"
-  integrity sha512-9HCxZRvDbW8Ff1SpEApUNNIGonjXtOM0GyGJL05kIHlkDKWnlP8meSyqHpzL0LZsA+IbDwHlvmtb8w/sPHSvhw==
 
 react-player@^2.10.1:
   version "2.11.0"
