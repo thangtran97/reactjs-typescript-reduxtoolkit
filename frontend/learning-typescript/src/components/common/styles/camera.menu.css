@@ -1,6 +1,6 @@
 .menu-camera {
     height: 270px;
-    background-color: #2f3a46;
+    background: linear-gradient(to right, #0e1015 , #2f3a46);
     color: #ffffff;
     font-family: "Hiragino";
 }
@@ -40,12 +40,12 @@
 }
 
 .menu-cam-allow-hover:hover {
-    background-color: #64c8ff;
+    background: linear-gradient(to right, #64c8ff , #3082a5);
     opacity: 1;
 }
 
 .menu-cam-allow-hover {
-    background-color: #2f3a46;
+    background: linear-gradient(to right, #0e1015 , #2f3a46);
     color: #ffffff;
     opacity: 0.4;
     cursor: pointer;
@@ -61,7 +61,7 @@
     z-index: 3;
     width: 194px;
     height: 158px;
-    background-color: #2f3a46;
+    background: linear-gradient(to right, #0e1015 , #2f3a46);
     border-radius: 12px;
     border: #82f0ff solid 1px;
 }
