@@ -129,8 +129,19 @@ const LiveView: React.FC = () => {
     return (
         <Page
             content={
-                <div style={{ marginLeft: 100, marginTop: 10 }}>
-                    <div className="record-container">
+                <div style={{ marginTop: 10 }}>
+                    <div className="live-container">
+                        <div className="video-info">
+                            <Row>
+                                camera01
+                            </Row>
+                            <Row>
+                                1280x720
+                            </Row>
+                            <Row>
+                                H.264
+                            </Row>
+                        </div>
                         <div ref={videoContainerRef} className="video-container">
                             <WebrtcPlayer
                                 url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}

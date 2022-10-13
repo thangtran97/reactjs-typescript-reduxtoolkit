@@ -9,7 +9,7 @@ const RecordPlayer: React.FC = () => {
     return (
         <Page
             content={
-                <div style={{ marginLeft: 100, marginTop: 10 }}>
+                <div style={{ marginTop: 10 }}>
                     <video width="1366" height="768" controls autoPlay={true}>
                         <source src={"http://localhost:5000/records/play?name=" + name} type="video/mp4" />
                     </video>

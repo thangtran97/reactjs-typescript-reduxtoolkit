@@ -1,7 +1,7 @@
 export interface StreamState {
     isLoading: boolean;
     isSuccessful: boolean;
-    currentIndex : number;
+    currentIndex: number;
     values: Stream[];
 }
 
@@ -24,4 +24,16 @@ export interface GetListStreamResponse {
             }
         }
     };
+}
+
+export interface StreamPositionState {
+    isLoading: boolean;
+    isSuccessful: boolean;
+    values: StreamPosition[];
+}
+
+export interface StreamPosition {
+    id: number;
+    position: number;
+    url: string;
 }

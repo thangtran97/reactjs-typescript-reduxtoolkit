@@ -40,7 +40,7 @@
 }
 
 .menu-cam-allow-hover:hover {
-    background: linear-gradient(to right, #64c8ff , #3082a5);
+    background: linear-gradient(to bottom, #64c8ff , #3082a5);
     opacity: 1;
 }
 

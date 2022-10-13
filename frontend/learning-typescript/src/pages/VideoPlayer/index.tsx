@@ -82,7 +82,7 @@ const VideoPlayer: React.FC = () => {
     return (
         <Page
             content={
-                <div style={{ marginLeft: 100, marginTop: 10 }}>
+                <div style={{ marginTop: 10 }}>
                     <video
                         ref={videoRef}
                         className="video-js vjs-big-play-centered vjs"
