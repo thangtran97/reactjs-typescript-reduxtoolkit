@@ -75,6 +75,33 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                     </ul>
                 </li>
 
+                <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
+                    <a href="#"
+                       className={'menu-cam-link'}>
+                        <img src="icons/camera-menu/manual-recording.png"
+                             className={'icon icon-24 icon-line'}/>
+                        手動記録
+                    </a>
+                </li>
+
+                <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
+                    <a href="#"
+                       className={'menu-cam-link'}>
+                        <img src="icons/camera-menu/cam-voice.png"
+                             className={'icon icon-24 icon-line'}/>
+                        カメラ音声
+                    </a>
+                </li>
+
+                <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
+                    <a href="#"
+                       className={'menu-cam-link'}>
+                        <img src="icons/camera-menu/snapshot.png"
+                             className={'icon icon-24 icon-line'}/>
+                        スナップショット
+                    </a>
+                </li>
+
                 <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover'}>
                     <a href="#"
                        className={'menu-cam-link'}>
@@ -93,50 +120,7 @@ const MenuCamera: React.FC<PropTypes> = (props) => {
                     </a>
                 </li>
 
-                <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover'}>
-                    <a href="#"
-                       className={'menu-cam-link'}>
-                        <img src="icons/camera-menu/easy-play.png"
-                             className={'icon icon-24 icon-line'}/>
-                        再生
-                    </a>
-                </li>
 
-                <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
-                    <a href="#"
-                       className={'menu-cam-link'}>
-                        <img src="icons/camera-menu/cam-voice.png"
-                             className={'icon icon-24 icon-line'}/>
-                        カメラ音声
-                    </a>
-                </li>
-
-                <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
-                    <a href="#"
-                       className={'menu-cam-link'}>
-                        <img src="icons/camera-menu/cam-input-output.png"
-                             className={'icon icon-24 icon-line'}/>
-                        カメラ接点入出力
-                    </a>
-                </li>
-
-                <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
-                    <a href="#"
-                       className={'menu-cam-link'}>
-                        <img src="icons/camera-menu/manual-recording.png"
-                             className={'icon icon-24 icon-line'}/>
-                        手動記録
-                    </a>
-                </li>
-
-                <li className={'menu-cam-line menu-cam-has-children menu-cam-allow-hover '}>
-                    <a href="#"
-                       className={'menu-cam-link'}>
-                        <img src="icons/camera-menu/snapshot.png"
-                             className={'icon icon-24 icon-line'}/>
-                        スナップショット
-                    </a>
-                </li>
             </div>
         </Draggable>
     );
