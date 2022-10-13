@@ -142,6 +142,9 @@ const LiveView: React.FC = () => {
                                 H.264
                             </Row>
                         </div>
+                        <div className="recording-status">
+                            <img className="icon-22" src="/icons/recording.png"/>
+                        </div>
                         <div ref={videoContainerRef} className="video-container">
                             <WebrtcPlayer
                                 url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
@@ -324,13 +327,8 @@ const LiveView: React.FC = () => {
                             {openRecordMenu ?
                                 <div className="record-bar">
                                     <Row style={{ height: 32, alignContent: "center" }}>
-                                        <Button
-                                            style={{ marginLeft: 5 }}
-                                            type="text"
-                                            icon={<img className="icon-22"
-                                                       src="/icons/status-bar/recorder-menu.png" />}
-                                            size="small"
-                                        />
+                                        <img className="icon-22" style={{ marginLeft: 5 }}
+                                             src="/icons/status-bar/recorder-menu.png" />
                                         <Button
                                             style={{ left: 100 }}
                                             type="text"

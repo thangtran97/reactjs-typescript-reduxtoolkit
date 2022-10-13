@@ -11,7 +11,7 @@ interface PropTypes {
 
 const navBarItems: MenuProps["items"] = [
     {
-        label: <Link to={"/"}>Home</Link>,
+        label: <Link to={"/"}><img src="/icons/secom-logo.png" /></Link>,
         key: "home",
     },
     {

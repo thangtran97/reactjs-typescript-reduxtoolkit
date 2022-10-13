@@ -14,3 +14,7 @@
 .site-layout-background {
     background: #fff;
 }
+
+.ant-menu-dark {
+    background: #001529 !important;
+}
