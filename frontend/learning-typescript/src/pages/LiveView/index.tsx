@@ -5,10 +5,12 @@ import Page from "../../components/Page";
 import { Button, Col, Menu, MenuProps, Row, Select } from "antd";
 import { useAppDispatch } from "../../store/hooks";
 import WebrtcPlayer from "../../components/WebrtcPlayer";
-import { CaretDownOutlined, CloseOutlined } from "@ant-design/icons";
+import {CaretDownOutlined, CloseOutlined, PlusOutlined} from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import MenuCamera from "../../components/common/MenuCamera";
 
+const ONE_STREAM = "1";
+const FOUR_STREAM = "2";
 const LiveView: React.FC = () => {
     const [openRecordMenu, setOpenRecordMenu] = useState(false);
     const [openLayoutMenu, setOpenLayoutMenu] = useState(true);
@@ -19,6 +21,7 @@ const LiveView: React.FC = () => {
         mouseY: number;
         isNotNull: boolean;
     }>({mouseX: 0, mouseY: 0, isNotNull: false});
+    const [viewMode, setViewMode] = useState<string>(ONE_STREAM);
 
     const rootSubmenuKeys = ["search", "setting", "recorder", "maintenance"];
     let videoContainerRef = useRef(null);
@@ -126,6 +129,33 @@ const LiveView: React.FC = () => {
         setContextMenu({mouseX: 0, mouseY: 0, isNotNull: false});
     };
 
+    const setWidth = (position?: number) => {
+        switch (viewMode) {
+            case ONE_STREAM:
+                return 1366;
+            case FOUR_STREAM:
+                return 683;
+        }
+    };
+
+    const setHeight = (position?: number) => {
+        switch (viewMode) {
+            case ONE_STREAM:
+                return 768;
+            case FOUR_STREAM:
+                return 384;
+        }
+    };
+
+    const setBlockSize = (position?: number) => {
+        switch (viewMode) {
+            case ONE_STREAM:
+                return "block-100";
+            case FOUR_STREAM:
+                return "block-50";
+        }
+    };
+
     return (
         <Page
             content={
@@ -145,13 +175,43 @@ const LiveView: React.FC = () => {
                         <div className="recording-status">
                             <img className="icon-22" src="/icons/recording.png"/>
                         </div>
-                        <div ref={videoContainerRef} className="video-container">
-                            <WebrtcPlayer
-                                url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
-                                width={1280}
-                                height={720}
-                                onClick={handleContextMenu}
-                            />
+                        <div ref={videoContainerRef} className="video-container" style={{width: 1366, height: 768}}>
+                            <div id="block1" className={"space-align-block " + setBlockSize(1)}>
+                                <WebrtcPlayer
+                                    url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                    width={setWidth(1)}
+                                    height={setHeight(1)}
+                                    onClick={handleContextMenu}
+                                />
+                            </div>
+
+                            {(viewMode != ONE_STREAM) ?
+                                (<div id="block2" className={"space-align-block " + setBlockSize()}>
+                                    <WebrtcPlayer
+                                        url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                        width={setWidth()}
+                                        height={setHeight()}
+                                        onClick={handleContextMenu}
+                                    />
+                                </div>) : null}
+                            {(viewMode != ONE_STREAM) ?
+                                (<div id="block3" className={"space-align-block " + setBlockSize()}>
+                                    <WebrtcPlayer
+                                        url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                        width={setWidth()}
+                                        height={setHeight()}
+                                        onClick={handleContextMenu}
+                                    />
+                                </div>) : null}
+                            {(viewMode != ONE_STREAM) ?
+                                (<div id="block4" className={"space-align-block " + setBlockSize()}>
+                                    <WebrtcPlayer
+                                        url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                        width={setWidth()}
+                                        height={setHeight()}
+                                        onClick={handleContextMenu}
+                                    />
+                                </div>) : null}
                         </div>
                         <div className="status-bar-container">
                             <div className="status-bar">
@@ -235,6 +295,7 @@ const LiveView: React.FC = () => {
                                                         icon={<img className="icon-22"
                                                                    src="/icons/status-bar/1x1-screen.png" />}
                                                         size="small"
+                                                        onClick={() => setViewMode(ONE_STREAM)}
                                                     />
                                                 </Col>
                                                 <Col span={8}>
@@ -243,6 +304,7 @@ const LiveView: React.FC = () => {
                                                         icon={<img className="icon-22"
                                                                    src="/icons/status-bar/2x2-screen.png" />}
                                                         size="small"
+                                                        onClick={() => setViewMode(FOUR_STREAM)}
                                                     />
                                                 </Col>
                                                 <Col span={8}>

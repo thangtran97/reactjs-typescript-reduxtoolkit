@@ -73,6 +73,14 @@
       },
       "name": "Norwich"
     },
+    "5d67eb03-df32-4b2b-a1fa-26b77d49f3c9": {
+      "channels": {
+        "0": {
+          "url": "rtsp://root:11111Qaz@172.20.109.238:554/live2.sdp"
+        }
+      },
+      "name": "Cam-01-02"
+    },
     "610f7bdb-6a43-452d-9235-3a49a692f17a": {
       "channels": {
         "0": {
