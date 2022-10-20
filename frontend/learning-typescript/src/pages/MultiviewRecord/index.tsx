@@ -126,8 +126,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px orangered" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_1_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo1(event)}
 
                         />
@@ -144,8 +144,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_2_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo2(event)}
                         />
                     </TransformComponent>
@@ -161,8 +161,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_3_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo3(event)}
                         />
                     </TransformComponent>
@@ -178,8 +178,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_4_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo4(event)}
                         />
                     </TransformComponent>
@@ -344,8 +344,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px orangered" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_1_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo1(event)}
                         />
                     </TransformComponent>
@@ -361,8 +361,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_2_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo2(event)}
                         />
                     </TransformComponent>
@@ -378,8 +378,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_3_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo3(event)}
                         />
                     </TransformComponent>
@@ -395,8 +395,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_4_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo4(event)}
                         />
                     </TransformComponent>
@@ -417,8 +417,8 @@ const MultiviewRecord: React.FC = () => {
                             ref={videoRef}
                             style={{ border: "solid 1px orangered" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_2_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo2(event)}
                         />
                     </TransformComponent>
@@ -434,8 +434,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_1_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo1(event)}
                         />
                     </TransformComponent>
@@ -451,8 +451,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_3_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo3(event)}
                         />
                     </TransformComponent>
@@ -468,8 +468,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_4_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo4(event)}
                         />
                     </TransformComponent>
@@ -490,8 +490,8 @@ const MultiviewRecord: React.FC = () => {
                             ref={videoRef}
                             style={{ border: "solid 1px orangered" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_3_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo3(event)}
                         />
                     </TransformComponent>
@@ -507,8 +507,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_1_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo1(event)}
                         />
                     </TransformComponent>
@@ -524,8 +524,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_2_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo2(event)}
                         />
                     </TransformComponent>
@@ -541,8 +541,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_4_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo4(event)}
                         />
                     </TransformComponent>
@@ -563,8 +563,8 @@ const MultiviewRecord: React.FC = () => {
                             ref={videoRef}
                             style={{ border: "solid 1px orangered" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_4_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo4(event)}
                         />
                     </TransformComponent>
@@ -580,8 +580,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_1_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo1(event)}
                         />
                     </TransformComponent>
@@ -597,8 +597,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_2_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo2(event)}
                         />
                     </TransformComponent>
@@ -614,8 +614,8 @@ const MultiviewRecord: React.FC = () => {
                             crossOrigin=""
                             style={{ border: "solid 1px grey" }}
                             src={"http://localhost:5000/records/play?name=" + lstVideoPlay.get(VIDEO_3_ID)}
-                            width={683}
-                            height={384}
+                            width={640}
+                            height={360}
                             onClick={(event) => handleClickVideo3(event)}
                         />
                     </TransformComponent>

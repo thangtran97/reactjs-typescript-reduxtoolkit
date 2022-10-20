@@ -13,7 +13,7 @@ const ONE_STREAM = "1";
 const FOUR_STREAM = "2";
 const LiveView: React.FC = () => {
     const [openRecordMenu, setOpenRecordMenu] = useState(false);
-    const [openLayoutMenu, setOpenLayoutMenu] = useState(true);
+    const [openLayoutMenu, setOpenLayoutMenu] = useState(false);
     const [openSelectLayoutCustomize, setOpenSelectLayoutCustomize] = useState(false);
     const [openKeys, setOpenKeys] = useState([]);
     const [contextMenu, setContextMenu] = React.useState<{
@@ -57,17 +57,29 @@ const LiveView: React.FC = () => {
             key: "setting",
             children: [
                 {
-                    key: "setting1",
-                    label: "ＯＯＯＯ"
+                    key: "cameraManagement",
+                    label: "カメラ管理"
                 },
                 {
-                    key: "setting2",
-                    label: "ＯＯＯＯ"
+                    key: "cameraFunction",
+                    label: "カメラ機能"
                 },
                 {
-                    key: "setting3",
-                    label: "ＯＯＯＯ"
-                }
+                    key: "recordingSetting",
+                    label: "録画設定"
+                },
+                {
+                    key: "storageManagement",
+                    label: "ストレージ管理"
+                },
+                {
+                    key: "ioContact",
+                    label: "接点入出力"
+                },
+                {
+                    key: "userManagement",
+                    label: "ユーザー管理"
+                },
             ]
         },
         {
@@ -132,18 +144,18 @@ const LiveView: React.FC = () => {
     const setWidth = (position?: number) => {
         switch (viewMode) {
             case ONE_STREAM:
-                return 1366;
+                return 1280;
             case FOUR_STREAM:
-                return 683;
+                return 640;
         }
     };
 
     const setHeight = (position?: number) => {
         switch (viewMode) {
             case ONE_STREAM:
-                return 768;
+                return 720;
             case FOUR_STREAM:
-                return 384;
+                return 360;
         }
     };
 
@@ -175,10 +187,10 @@ const LiveView: React.FC = () => {
                         <div className="recording-status">
                             <img className="icon-22" src="/icons/recording.png"/>
                         </div>
-                        <div ref={videoContainerRef} className="video-container" style={{width: 1366, height: 768}}>
+                        <div ref={videoContainerRef} className="video-container" style={{width: 1280, height: 720}}>
                             <div id="block1" className={"space-align-block " + setBlockSize(1)}>
                                 <WebrtcPlayer
-                                    url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                    url={"http://localhost:8083/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0"}
                                     width={setWidth(1)}
                                     height={setHeight(1)}
                                     onClick={handleContextMenu}
@@ -188,7 +200,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block2" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                        url={"http://localhost:8083/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0"}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}
@@ -197,7 +209,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block3" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                        url={"http://localhost:8083/stream/41251ba0-be89-457f-8b1a-3f6a4ddaaedf/channel/0/webrtc?uuid=41251ba0-be89-457f-8b1a-3f6a4ddaaedf&channel=0"}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}
@@ -206,7 +218,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block4" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                        url={"http://localhost:8083/stream/41251ba0-be89-457f-8b1a-3f6a4ddaaedf/channel/0/webrtc?uuid=41251ba0-be89-457f-8b1a-3f6a4ddaaedf&channel=0"}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}
