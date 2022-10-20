@@ -5,7 +5,7 @@ import Page from "../../components/Page";
 import { Button, Col, Menu, MenuProps, Row, Select } from "antd";
 import { useAppDispatch } from "../../store/hooks";
 import WebrtcPlayer from "../../components/WebrtcPlayer";
-import {CaretDownOutlined, CloseOutlined, PlusOutlined} from "@ant-design/icons";
+import { CaretDownOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import MenuCamera from "../../components/common/MenuCamera";
 
@@ -20,7 +20,7 @@ const LiveView: React.FC = () => {
         mouseX: number;
         mouseY: number;
         isNotNull: boolean;
-    }>({mouseX: 0, mouseY: 0, isNotNull: false});
+    }>({ mouseX: 0, mouseY: 0, isNotNull: false });
     const [viewMode, setViewMode] = useState<string>(ONE_STREAM);
 
     const rootSubmenuKeys = ["search", "setting", "recorder", "maintenance"];
@@ -79,7 +79,7 @@ const LiveView: React.FC = () => {
                 {
                     key: "userManagement",
                     label: "ユーザー管理"
-                },
+                }
             ]
         },
         {
@@ -133,12 +133,12 @@ const LiveView: React.FC = () => {
                     mouseX: 0,
                     mouseY: 0,
                     isNotNull: false
-                },
+                }
         );
     };
 
     const handleCloseMenuCam = () => {
-        setContextMenu({mouseX: 0, mouseY: 0, isNotNull: false});
+        setContextMenu({ mouseX: 0, mouseY: 0, isNotNull: false });
     };
 
     const setWidth = (position?: number) => {
@@ -185,45 +185,15 @@ const LiveView: React.FC = () => {
                             </Row>
                         </div>
                         <div className="recording-status">
-                            <img className="icon-22" src="/icons/recording.png"/>
+                            <img className="icon-22" src="/icons/recording.png" />
                         </div>
-                        <div ref={videoContainerRef} className="video-container" style={{width: 1280, height: 720}}>
-                            <div id="block1" className={"space-align-block " + setBlockSize(1)}>
-                                <WebrtcPlayer
-                                    url={"http://localhost:8083/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0"}
-                                    width={setWidth(1)}
-                                    height={setHeight(1)}
-                                    onClick={handleContextMenu}
-                                />
-                            </div>
-
-                            {(viewMode != ONE_STREAM) ?
-                                (<div id="block2" className={"space-align-block " + setBlockSize()}>
-                                    <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0"}
-                                        width={setWidth()}
-                                        height={setHeight()}
-                                        onClick={handleContextMenu}
-                                    />
-                                </div>) : null}
-                            {(viewMode != ONE_STREAM) ?
-                                (<div id="block3" className={"space-align-block " + setBlockSize()}>
-                                    <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/41251ba0-be89-457f-8b1a-3f6a4ddaaedf/channel/0/webrtc?uuid=41251ba0-be89-457f-8b1a-3f6a4ddaaedf&channel=0"}
-                                        width={setWidth()}
-                                        height={setHeight()}
-                                        onClick={handleContextMenu}
-                                    />
-                                </div>) : null}
-                            {(viewMode != ONE_STREAM) ?
-                                (<div id="block4" className={"space-align-block " + setBlockSize()}>
-                                    <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/41251ba0-be89-457f-8b1a-3f6a4ddaaedf/channel/0/webrtc?uuid=41251ba0-be89-457f-8b1a-3f6a4ddaaedf&channel=0"}
-                                        width={setWidth()}
-                                        height={setHeight()}
-                                        onClick={handleContextMenu}
-                                    />
-                                </div>) : null}
+                        <div ref={videoContainerRef} className="video-container">
+                            <WebrtcPlayer
+                                url={"http://localhost:8083/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0"}
+                                width={setWidth(1)}
+                                height={setHeight(1)}
+                                onClick={handleContextMenu}
+                            />
                         </div>
                         <div className="status-bar-container">
                             <div className="status-bar">
@@ -406,7 +376,7 @@ const LiveView: React.FC = () => {
                                         <Button
                                             style={{ left: 100 }}
                                             type="text"
-                                            icon={<CloseOutlined style={{fontSize: 22, color: "gray"}} />}
+                                            icon={<CloseOutlined style={{ fontSize: 22, color: "gray" }} />}
                                             size="small"
                                             onClick={() => setOpenRecordMenu(false)}
                                         />
@@ -425,7 +395,7 @@ const LiveView: React.FC = () => {
                     {contextMenu.isNotNull ?
                         <MenuCamera mouseX={contextMenu.mouseX}
                                     mouseY={contextMenu.mouseY}
-                                    onClose={handleCloseMenuCam}/>
+                                    onClose={handleCloseMenuCam} />
                         : <></>}
                 </div>
             }
