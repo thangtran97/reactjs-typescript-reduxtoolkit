@@ -6,7 +6,6 @@ import { Button, Col, Menu, MenuProps, Row, Select } from "antd";
 import { useAppDispatch } from "../../store/hooks";
 import WebrtcPlayer from "../../components/WebrtcPlayer";
 import { CaretDownOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import MenuCamera from "../../components/common/MenuCamera";
 
 const ONE_STREAM = "1";
@@ -22,28 +21,11 @@ const LiveView: React.FC = () => {
         isNotNull: boolean;
     }>({ mouseX: 0, mouseY: 0, isNotNull: false });
     const [viewMode, setViewMode] = useState<string>(FOUR_STREAM);
-    const [streamUrl, setStreamUrl] = useState({
-        url1: "",
-        url2: "",
-        url3: "",
-        url4: "",
-        url5: "",
-        url6: "",
-        url7: "",
-        url8: "",
-        url9: "",
-        url10: "",
-        url11: "",
-        url12: "",
-        url13: "",
-        url14: "",
-        url15: "",
-        url16: ""
-    });
 
     const rootSubmenuKeys = ["search", "setting", "recorder", "maintenance"];
     let videoContainerRef = useRef(null);
     const dispatch = useAppDispatch();
+    const ip = process.env.REACT_APP_CLIENT_IP;
 
     const recordMenuItems: MenuProps["items"] = [
         {
@@ -208,7 +190,7 @@ const LiveView: React.FC = () => {
                         <div ref={videoContainerRef} className="video-container" style={{width: 1284, height: 724}}>
                             <div id="block1" className={"space-align-block " + setBlockSize(1)}>
                                 <WebrtcPlayer
-                                    url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                    url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0`}
                                     width={setWidth(1)}
                                     height={setHeight(1)}
                                     onClick={handleContextMenu}
@@ -218,7 +200,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block2" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0`}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}
@@ -227,7 +209,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block3" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0"}
+                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0`}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}
@@ -236,7 +218,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block4" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={"http://localhost:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0"}
+                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0`}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}

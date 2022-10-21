@@ -29,6 +29,7 @@
 .menu-cam-link {
     color: #ffffff;
     text-decoration: none;
+    padding-left: 5px;
 }
 
 .menu-cam-link:hover {
