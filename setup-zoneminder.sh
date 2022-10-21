@@ -13,5 +13,5 @@ chown -R www-data:www-data /usr/share/zoneminder/; \
 a2enmod cgi rewrite expires headers; \
 a2enconf zoneminder; \
 service zoneminder start; \
-service apache2 reload
+service apache2 reload     
 
