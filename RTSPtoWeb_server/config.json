@@ -117,6 +117,14 @@
       },
       "name": "VyhladJazero"
     },
+    "9a58d442-ea26-4ee7-a7f8-498b369552a8": {
+      "channels": {
+        "0": {
+          "url": "rtsp://localhost:8554/mystream"
+        }
+      },
+      "name": "decode h265"
+    },
     "b1e216b0-2361-440c-b2fc-2e25dcffe532": {
       "channels": {
         "0": {

@@ -4,8 +4,6 @@ import "video.js/dist/video-js.css";
 import "videojs-seek-buttons/dist/videojs-seek-buttons.css";
 import Page from "../../components/Page";
 import { useParams } from "react-router-dom";
-import videoJsContribQualityLevels from "videojs-contrib-quality-levels";
-import videojsHlsQualitySelector from "videojs-hls-quality-selector";
 import videosjsSeekButton from "videojs-seek-buttons";
 import { getDetailVideo } from "../../store/videoSlice";
 import { useAppDispatch } from "../../store/hooks";
