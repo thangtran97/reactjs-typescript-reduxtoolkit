@@ -29,82 +29,82 @@ const LiveView: React.FC = () => {
 
     const recordMenuItems: MenuProps["items"] = [
         {
-            label: "検索",
+            label: <div className="side-bar-menu">検索</div>,
             icon: <img className="icon-22" src="/icons/sidebar/search-play-menu.png" />,
             key: "search",
             children: [
                 {
                     key: "search1",
-                    label: "ＯＯＯＯ"
+                    label: <div className="side-bar-submenu">ＯＯＯＯ</div>
                 },
                 {
                     key: "search2",
-                    label: "ＯＯＯＯ"
+                    label: <div className="side-bar-submenu">ＯＯＯＯ</div>
                 },
                 {
                     key: "search3",
-                    label: "ＯＯＯＯ"
+                    label: <div className="side-bar-submenu">ＯＯＯＯ</div>
                 },
                 {
                     key: "search4",
-                    label: "ＯＯＯＯ"
+                    label: <div className="side-bar-submenu">ＯＯＯＯ</div>
                 }
             ]
         },
         {
-            label: "設定",
+            label: <div className="side-bar-menu">設定</div>,
             icon: <img className="icon-22" src="/icons/sidebar/settings-menu.png" />,
             key: "setting",
             children: [
                 {
                     key: "cameraManagement",
-                    label: "カメラ管理"
+                    label: <div className="side-bar-submenu">カメラ管理</div>
                 },
                 {
                     key: "cameraFunction",
-                    label: "カメラ機能"
+                    label: <div className="side-bar-submenu">カメラ機能</div>
                 },
                 {
                     key: "recordingSetting",
-                    label: "録画設定"
+                    label: <div className="side-bar-submenu">録画設定</div>
                 },
                 {
                     key: "storageManagement",
-                    label: "ストレージ管理"
+                    label: <div className="side-bar-submenu">ストレージ管理</div>
                 },
                 {
                     key: "ioContact",
-                    label: "接点入出力"
+                    label: <div className="side-bar-submenu">接点入出力</div>
                 },
                 {
                     key: "userManagement",
-                    label: "ユーザー管理"
+                    label: <div className="side-bar-submenu">ユーザー管理</div>
                 }
             ]
         },
         {
-            label: "履歴",
+            label: <div className="side-bar-menu">履歴</div>,
             icon: <img className="icon-22" src="/icons/sidebar/recorder-menu.png" />,
             key: "recorder",
             children: [
                 {
                     key: "recorder1",
-                    label: "ＯＯＯＯ"
+                    label: <div className="side-bar-submenu">ＯＯＯＯ</div>
                 },
                 {
                     key: "recorder2",
-                    label: "ＯＯＯＯ"
+                    label: <div className="side-bar-submenu">ＯＯＯＯ</div>
                 }
             ]
         },
         {
-            label: "保守",
+            label: <div className="side-bar-menu">保守</div>,
             icon: <img className="icon-22" src="/icons/sidebar/maintenance-menu.png" />,
             key: "maintenance",
             children: [
                 {
                     key: "maintenance1",
-                    label: "ＯＯＯＯ"
+                    label: <div className="side-bar-submenu">ＯＯＯＯ</div>
                 }
             ]
         }
@@ -187,10 +187,11 @@ const LiveView: React.FC = () => {
                         <div className="recording-status">
                             <img className="icon-22" src="/icons/recording.png" />
                         </div>
-                        <div ref={videoContainerRef} className="video-container" style={{width: 1284, height: 724}}>
+                        <div ref={videoContainerRef} className="video-container" style={{width: 1280, height: 720}}>
                             <div id="block1" className={"space-align-block " + setBlockSize(1)}>
                                 <WebrtcPlayer
-                                    url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0`}
+                                    url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/41251ba0-be89-457f-8b1a-3f6a4ddaaedf/channel/0/webrtc?uuid=41251ba0-be89-457f-8b1a-3f6a4ddaaedf&channel=0`}
+                                    style={{ border: "solid 1px #f15a24" }}
                                     width={setWidth(1)}
                                     height={setHeight(1)}
                                     onClick={handleContextMenu}
@@ -200,7 +201,8 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block2" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0`}
+                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0`}
+                                        style={{ border: "solid 1px grey" }}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}
@@ -209,7 +211,8 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block3" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0`}
+                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0`}
+                                        style={{ border: "solid 1px grey" }}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}
@@ -218,7 +221,8 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block4" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0`}
+                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/6279629d-eb8e-4b87-a03f-43adb05f2ecc/channel/0/webrtc?uuid=6279629d-eb8e-4b87-a03f-43adb05f2ecc&channel=0`}
+                                        style={{ border: "solid 1px grey" }}
                                         width={setWidth()}
                                         height={setHeight()}
                                         onClick={handleContextMenu}

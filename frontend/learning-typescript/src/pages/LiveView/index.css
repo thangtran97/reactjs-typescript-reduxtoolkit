@@ -4,7 +4,6 @@
     width: 100%;
     max-height: 720px;
     height: 100%;
-    border: 1px solid #b1b1b1;
 }
 
 .video-info {
@@ -119,13 +118,21 @@
     z-index: 2;
 }
 
+.side-bar-submenu {
+    font-family: "Hiragino";
+    font-size: 10px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.side-bar-menu {
+    font-family: "Hiragino";
+    font-size: 15px;
+}
+
 .ant-menu-dark {
     background: linear-gradient(to right, #0E1015, #2F3A46) !important;
 }
-
-/*.ant-menu-submenu-active {*/
-/*    background: linear-gradient(to bottom, #64C8FF, #3082A5) !important;*/
-/*}*/
 
 .ant-menu-submenu-open {
     background: linear-gradient(to bottom, #64C8FF, #3082A5) !important;
@@ -133,17 +140,28 @@
 
 .ant-menu-sub {
     background: #64C8FF !important;
+}
+
+.ant-menu::before {
+    padding-top: 2.5px !important;
+    padding-bottom: 2.5px !important;
+}
+
+.ant-menu::after {
+    padding-top: 2.5px !important;
+    padding-bottom: 2.5px !important;
+}
+
+.ant-menu-submenu-title {
+    padding-left: 5px !important;
+    margin: 0px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
+    height: 30px !important;
 }
 
 .ant-menu-item {
-    font-family: "Hiragino";
-    font-size: 10px;
-    background: #64C8FF !important;
     padding-left: 30px !important;
-    margin-top: 3px !important;
-    margin-bottom: 3px !important;
     height: 20px !important;
     margin: 0px !important;
 }
@@ -152,20 +170,10 @@
     display: none;
 }
 
-.ant-menu-submenu-title {
-    font-family: "Hiragino";
-    font-size: 15px !important;
-    padding-left: 5px !important;
-    margin: 0px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    height: 30px !important;
-}
-
 .ant-menu-item-selected {
     background: rgba(47, 58, 70, 0.3)  !important;
     width: 148px !important;
-    margin-left: 4px !important;
+    left: 2.5% !important;
     padding-left: 26px !important;
 }
 

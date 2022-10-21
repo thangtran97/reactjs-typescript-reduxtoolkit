@@ -124,10 +124,10 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
 
     return (
         <div className="webrtc-container">
-            <Spin className="webrtc-spinner"
-                  indicator={circleIcon}
-                  spinning={!isPlaying}
-            />
+            {/*<Spin className="webrtc-spinner"*/}
+            {/*      indicator={circleIcon}*/}
+            {/*      spinning={!isPlaying}*/}
+            {/*/>*/}
             <video
                 ref={videoRef}
                 autoPlay={true}
@@ -136,7 +136,7 @@ const WebrtcPlayer: React.FC<PropTypes> = (props) => {
                 width={props.width || undefined}
                 height={props.height || undefined}
                 muted
-                onPlaying={handleOnPlaying}
+                // onPlaying={handleOnPlaying}
                 onDoubleClick={handleDbClick}
                 onClick={props.onClick}
                 id={"stream-" + props.id}
