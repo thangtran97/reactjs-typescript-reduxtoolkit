@@ -190,7 +190,7 @@ const LiveView: React.FC = () => {
                         <div ref={videoContainerRef} className="video-container" style={{width: 1280, height: 720}}>
                             <div id="block1" className={"space-align-block " + setBlockSize(1)}>
                                 <WebrtcPlayer
-                                    url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/41251ba0-be89-457f-8b1a-3f6a4ddaaedf/channel/0/webrtc?uuid=41251ba0-be89-457f-8b1a-3f6a4ddaaedf&channel=0`}
+                                    url={`${process.env.REACT_APP_LIVE_SERVER_HOST}/stream/41251ba0-be89-457f-8b1a-3f6a4ddaaedf/channel/0/webrtc?uuid=41251ba0-be89-457f-8b1a-3f6a4ddaaedf&channel=0`}
                                     style={{ border: "solid 1px #f15a24" }}
                                     width={setWidth(1)}
                                     height={setHeight(1)}
@@ -201,7 +201,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block2" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0`}
+                                        url={`${process.env.REACT_APP_LIVE_SERVER_HOST}/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0`}
                                         style={{ border: "solid 1px grey" }}
                                         width={setWidth()}
                                         height={setHeight()}
@@ -211,7 +211,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block3" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0`}
+                                        url={`${process.env.REACT_APP_LIVE_SERVER_HOST}/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0`}
                                         style={{ border: "solid 1px grey" }}
                                         width={setWidth()}
                                         height={setHeight()}
@@ -221,7 +221,7 @@ const LiveView: React.FC = () => {
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block4" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
-                                        url={`http://${process.env.REACT_APP_CLIENT_IP}:8083/stream/6279629d-eb8e-4b87-a03f-43adb05f2ecc/channel/0/webrtc?uuid=6279629d-eb8e-4b87-a03f-43adb05f2ecc&channel=0`}
+                                        url={`${process.env.REACT_APP_LIVE_SERVER_HOST}/stream/6279629d-eb8e-4b87-a03f-43adb05f2ecc/channel/0/webrtc?uuid=6279629d-eb8e-4b87-a03f-43adb05f2ecc&channel=0`}
                                         style={{ border: "solid 1px grey" }}
                                         width={setWidth()}
                                         height={setHeight()}

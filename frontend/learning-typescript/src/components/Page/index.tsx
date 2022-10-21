@@ -15,23 +15,23 @@ const navBarItems: MenuProps["items"] = [
         key: "home",
     },
     {
-        label: <Link to={"/live"}>Live View</Link>,
+        label: <Link to={"/live"} style={{textDecoration: 'none'}}>Live View</Link>,
         key: "live",
     },
     {
-        label: <Link to={"/multiview/streams"}>Multiview Stream</Link>,
+        label: <Link to={"/multiview/streams"} style={{textDecoration: 'none'}}>Multiview Stream</Link>,
         key: "multiviewStreams",
     },
     {
-        label: <Link to={"/multiview/records"}>Multiview Record</Link>,
+        label: <Link to={"/multiview/records"} style={{textDecoration: 'none'}}>Multiview Record</Link>,
         key: "multiviewRecords",
     },
     {
-        label: <Link to={"/videos"}>Videos</Link>,
+        label: <Link to={"/videos"} style={{textDecoration: 'none'}}>Videos</Link>,
         key: "videos",
     },
     {
-        label: <Link to={"/records"}>Records</Link>,
+        label: <Link to={"/records"} style={{textDecoration: 'none'}}>Records</Link>,
         key: "records",
     },
 ];

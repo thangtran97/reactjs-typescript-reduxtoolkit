@@ -134,6 +134,10 @@
     background: linear-gradient(to right, #0E1015, #2F3A46) !important;
 }
 
+.ant-layout-header {
+    background: linear-gradient(to right, #0E1015, #2F3A46) !important;
+}
+
 .ant-menu-submenu-open {
     background: linear-gradient(to bottom, #64C8FF, #3082A5) !important;
 }
@@ -164,6 +168,10 @@
     padding-left: 30px !important;
     height: 20px !important;
     margin: 0px !important;
+}
+
+.ant-menu-item-active {
+    background: none !important;
 }
 
 .ant-menu-submenu-arrow {
