@@ -2,18 +2,16 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./index.css";
 import Page from "../../components/Page";
-import {Button, Col, Menu, MenuProps, Modal, Row, Select} from "antd";
-import {useAppDispatch, useAppSelector} from "../../store/hooks";
+import { Button, Col, Menu, MenuProps, Row, Select } from "antd";
+import { useAppDispatch } from "../../store/hooks";
 import WebrtcPlayer from "../../components/WebrtcPlayer";
 import { CaretDownOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import MenuCamera from "../../components/common/MenuCamera";
-import {getAllStream, selectValues} from "../../store/streamSlice";
 
 const ONE_STREAM = "1";
 const FOUR_STREAM = "2";
 const LiveView: React.FC = () => {
-    const dispatch = useAppDispatch();
-    const streams = useAppSelector(selectValues);
     const [openRecordMenu, setOpenRecordMenu] = useState(false);
     const [openLayoutMenu, setOpenLayoutMenu] = useState(false);
     const [openSelectLayoutCustomize, setOpenSelectLayoutCustomize] = useState(false);
@@ -42,15 +40,10 @@ const LiveView: React.FC = () => {
         url15: "",
         url16: ""
     });
-    const [currentIndex, setCurrentIndex] = useState<number>();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    useEffect(() => {
-        dispatch(getAllStream());
-    }, [dispatch]);
 
     const rootSubmenuKeys = ["search", "setting", "recorder", "maintenance"];
     let videoContainerRef = useRef(null);
+    const dispatch = useAppDispatch();
 
     const recordMenuItems: MenuProps["items"] = [
         {
@@ -193,27 +186,6 @@ const LiveView: React.FC = () => {
         }
     };
 
-    const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>, id: number) => {
-        setCurrentIndex(id);
-        setIsModalOpen(true);
-    };
-
-    const handleSelectStream: MenuProps["onClick"] = e => {
-        setStreamUrl(prevState => ({
-            ...prevState,
-            [`url${currentIndex}`]: e.key
-        }));
-        setIsModalOpen(false);
-    };
-
-    const handleCloseVideo = (e: React.MouseEvent<HTMLVideoElement, MouseEvent>, id: number) => {
-        e.preventDefault();
-        setStreamUrl(prevState => ({
-            ...prevState,
-            [`url${id}`]: ""
-        }));
-    };
-
     return (
         <Page
             content={
@@ -235,81 +207,40 @@ const LiveView: React.FC = () => {
                         </div>
                         <div ref={videoContainerRef} className="video-container" style={{width: 1284, height: 724}}>
                             <div id="block1" className={"space-align-block " + setBlockSize(1)}>
-                                {streamUrl.url1 ?
-                                    <WebrtcPlayer
-                                        url={`http://localhost:8083/stream/${streamUrl.url1}/channel/0/webrtc?${streamUrl.url1}&channel=0`}
-                                        width={setWidth(1)}
-                                        height={setHeight(1)}
-                                        hasClose={true}
-                                        onClose={(e) => handleCloseVideo(e, 1)}
-                                        onClick={handleContextMenu}
-                                        id={"1"}
-                                    />
-
-                                    : <Button
-                                        shape="circle"
-                                        icon={<PlusOutlined/>}
-                                        size="large"
-                                        onClick={(e) => handleClick(e, 1)}
-                                    />}
+                                <WebrtcPlayer
+                                    url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                    width={setWidth(1)}
+                                    height={setHeight(1)}
+                                    onClick={handleContextMenu}
+                                />
                             </div>
 
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block2" className={"space-align-block " + setBlockSize()}>
-                                    {streamUrl.url2 ?
-                                        <WebrtcPlayer
-                                            url={`http://localhost:8083/stream/${streamUrl.url2}/channel/0/webrtc?${streamUrl.url2}&channel=0`}
-                                            width={setWidth()}
-                                            height={setHeight()}
-                                            hasClose={true}
-                                            onClose={(e) => handleCloseVideo(e, 2)}
-                                            onClick={handleContextMenu}
-                                            id={"2"}
-                                        />
-                                        : <Button
-                                            shape="circle"
-                                            icon={<PlusOutlined/>}
-                                            size="large"
-                                            onClick={(e) => handleClick(e, 2)}
-                                        />}
+                                    <WebrtcPlayer
+                                        url={"http://localhost:8083/stream/2a1e26f0-ceb0-4e7c-a989-100fa93a8fca/channel/0/webrtc?uuid=2a1e26f0-ceb0-4e7c-a989-100fa93a8fca&channel=0"}
+                                        width={setWidth()}
+                                        height={setHeight()}
+                                        onClick={handleContextMenu}
+                                    />
                                 </div>) : null}
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block3" className={"space-align-block " + setBlockSize()}>
-                                    {streamUrl.url3 ?
-                                        <WebrtcPlayer
-                                            url={`http://localhost:8083/stream/${streamUrl.url3}/channel/0/webrtc?${streamUrl.url3}&channel=0`}
-                                            width={setWidth()}
-                                            height={setHeight()}
-                                            hasClose={true}
-                                            onClose={(e) => handleCloseVideo(e, 3)}
-                                            onClick={handleContextMenu}
-                                            id={"3"}
-                                        />
-                                        : <Button
-                                            shape="circle"
-                                            icon={<PlusOutlined/>}
-                                            size="large"
-                                            onClick={(e) => handleClick(e, 3)}
-                                        />}
+                                    <WebrtcPlayer
+                                        url={"http://localhost:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0"}
+                                        width={setWidth()}
+                                        height={setHeight()}
+                                        onClick={handleContextMenu}
+                                    />
                                 </div>) : null}
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block4" className={"space-align-block " + setBlockSize()}>
-                                    {streamUrl.url4 ?
-                                        <WebrtcPlayer
-                                            url={`http://localhost:8083/stream/${streamUrl.url4}/channel/0/webrtc?${streamUrl.url4}&channel=0`}
-                                            width={setWidth()}
-                                            height={setHeight()}
-                                            hasClose={true}
-                                            onClose={(e) => handleCloseVideo(e, 4)}
-                                            onClick={handleContextMenu}
-                                            id={"4"}
-                                        />
-                                        : <Button
-                                            shape="circle"
-                                            icon={<PlusOutlined/>}
-                                            size="large"
-                                            onClick={(e) => handleClick(e, 4)}
-                                        />}
+                                    <WebrtcPlayer
+                                        url={"http://localhost:8083/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0"}
+                                        width={setWidth()}
+                                        height={setHeight()}
+                                        onClick={handleContextMenu}
+                                    />
                                 </div>) : null}
                         </div>
                         <div className="status-bar-container">
@@ -514,17 +445,6 @@ const LiveView: React.FC = () => {
                                     mouseY={contextMenu.mouseY}
                                     onClose={handleCloseMenuCam} />
                         : <></>}
-                    <Modal
-                        title="Select stream"
-                        open={isModalOpen}
-                        footer={null}
-                        onCancel={() => setIsModalOpen(false)}
-                    >
-                        <Menu
-                            items={streams}
-                            onClick={(e) => handleSelectStream(e)}
-                        />
-                    </Modal>
                 </div>
             }
         />
