@@ -206,6 +206,14 @@ const LiveView: React.FC = () => {
         setIsModalOpen(false);
     };
 
+    const handleCloseVideo = (e: React.MouseEvent<HTMLVideoElement, MouseEvent>, id: number) => {
+        e.preventDefault();
+        setStreamUrl(prevState => ({
+            ...prevState,
+            [`url${id}`]: ""
+        }));
+    };
+
     return (
         <Page
             content={
