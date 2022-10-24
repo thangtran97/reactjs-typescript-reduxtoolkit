@@ -35,6 +35,7 @@
         "react-redux": "^8.0.2",
         "react-router-dom": "6",
         "react-scripts": "5.0.1",
+        "react-simple-keyboard": "^3.4.227",
         "react-zoom-pan-pinch": "^2.1.3",
         "redux": "^4.2.0",
         "typescript": "^4.4.2",
