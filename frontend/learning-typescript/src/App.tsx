@@ -9,12 +9,14 @@ import RecordPlayer from "./pages/RecordPlayer";
 import MultiviewStream from "./pages/MultiviewStream";
 import MultiviewRecord from "./pages/MultiviewRecord";
 import LiveView from "./pages/LiveView";
+import Login from "./pages/Login";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<Login />} />
                 <Route path="/videos" element={<Video />} />
                 <Route path="/records" element={<Record />} />
                 <Route path="/multiview/streams" element={<MultiviewStream />} />

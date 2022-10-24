@@ -8494,6 +8494,11 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-simple-keyboard@^3.4.227:
+  version "3.4.227"
+  resolved "https://registry.yarnpkg.com/react-simple-keyboard/-/react-simple-keyboard-3.4.227.tgz#a04d05f959c2f6777ece76ac8aa841f7af854a71"
+  integrity sha512-0rXArWi1kZWGVW4cKl822UfERO4s5Gk2bKtHVSTYtGHQ8ZxhPL4aD9v53bxF3FfH1/6xx968cMZk3LK+82QA6w==
+
 react-select@^5.5.4:
   version "5.5.4"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-5.5.4.tgz#da05b8b66d33f6fc1f92fdccd0fa50d7f4418554"

@@ -20,7 +20,6 @@ import { useAppDispatch } from "../../store/hooks";
 import { uploadImage } from "../../store/imageSlice";
 import axios from "axios";
 import { MultiSelect } from "react-multi-select-component";
-import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {

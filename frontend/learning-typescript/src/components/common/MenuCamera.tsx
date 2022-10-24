@@ -4,7 +4,6 @@ import * as React from 'react';
 import './styles/camera.menu.css'
 import {useEffect, useState} from "react";
 import Draggable from 'react-draggable';
-import "bootstrap/dist/css/bootstrap.min.css";
 
 interface PropTypes {
     mouseX: number;
