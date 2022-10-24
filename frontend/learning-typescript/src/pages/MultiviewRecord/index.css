@@ -41,27 +41,3 @@
     background: #3a414b !important;
     color: white
 }
-
-.search-menu-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.search-menu {
-    position: absolute;
-    background: #3a414b;
-    width: 0;
-    height: 400px;
-    overflow: auto;
-}
-
-.search-menu-container:hover {
-    opacity: 0.8;
-}
-
-.i-thumbnail {
-    width: 14% !important;
-}

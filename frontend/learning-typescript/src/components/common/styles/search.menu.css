@@ -1,0 +1,24 @@
+.search-menu-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    padding-left: 20px;
+}
+
+.search-menu {
+    position: absolute;
+    background: #3a414b;
+    overflow: auto;
+    padding-left: 20px;
+    width: 400px;
+}
+
+.search-menu-container:hover {
+    opacity: 0.8;
+}
+
+.i-thumbnail {
+    width: 14% !important;
+}

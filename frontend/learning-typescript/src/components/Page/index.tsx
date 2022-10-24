@@ -34,6 +34,10 @@ const navBarItems: MenuProps["items"] = [
         label: <Link to={"/records"} style={{textDecoration: 'none'}}>Records</Link>,
         key: "records",
     },
+    {
+        label: <Link to={"/search"} style={{textDecoration: 'none'}}>Search</Link>,
+        key: "search",
+    },
 ];
 
 const sideBarItems: MenuProps["items"] = [
@@ -56,6 +60,10 @@ const sideBarItems: MenuProps["items"] = [
     {
         label: <Link to={"/records"}>Records</Link>,
         key: "records",
+    },
+    {
+        label: <Link to={"/search"}>Search</Link>,
+        key: "search",
     },
 ];
 

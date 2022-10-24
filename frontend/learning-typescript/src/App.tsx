@@ -11,6 +11,7 @@ import MultiviewRecord from "./pages/MultiviewRecord";
 import LiveView from "./pages/LiveView";
 import Login from "./pages/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SearchMenu from "./components/common/SearchMenu";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/videos/play/:id" element={<VideoPlayer />} />
                 <Route path="/records/play/:name" element={<RecordPlayer />} />
                 <Route path="/live" element={<LiveView />} />
+                <Route path="/search" element={<SearchMenu />} />
             </Routes>
         </div>
     );

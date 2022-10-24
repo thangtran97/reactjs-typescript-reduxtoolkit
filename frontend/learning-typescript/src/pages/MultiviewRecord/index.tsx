@@ -48,19 +48,6 @@ const MultiviewRecord: React.FC = () => {
     const [video3, setVideo3] = useState<ReactElement>(<video />);
     const [video4, setVideo4] = useState<ReactElement>(<video />);
 
-    const [comboboxValue, setCombobox] = useState<any>([]);
-    const [comboboxSelected, setCbSelected] = useState<any>([]);
-
-    const [startDate, setStartDate] = useState<Date>(new Date());
-    const [endDate, setEndDate] = useState<Date>(null);
-    const [lstVideoPlay, setPlayVideo] = useState<Map>(DEFAULT_RECORD_MAP);
-    const [videoIdSelected, setIdSelected] = useState<string>(VIDEO_1_ID);
-    const [dataSearch, setDataSearch] = useState<any[]>([]);
-    const [elementSearch, setElementSearch] = useState<ReactElement>(<div></div>);
-    const [selectedRow, setSelectedRow] = useState<number>(-1);
-    const [thumbnailData, setThumbnailData] = useState<any[]>([]);
-    const [thumbnailImg, setThumbnailImg] = useState<ReactElement>(<div></div>);
-
     let videoRef = useRef<HTMLVideoElement>(null);
     let panPinchRef = useRef<ReactZoomPanPinchRef>(null);
     let videoContainerRef = useRef(null);
@@ -115,7 +102,6 @@ const MultiviewRecord: React.FC = () => {
         lstVideoPlay.set(VIDEO_2_ID, "test2.mkv");
         lstVideoPlay.set(VIDEO_3_ID, "meomeo.mkv");
         lstVideoPlay.set(VIDEO_4_ID, "h264-encode.mkv");
-        setPlayVideo(lstVideoPlay);
         let v1 =
             <TransformWrapper ref={panPinchRef} maxScale={16} onZoom={handleOnZoom}>
                 <React.Fragment>
@@ -186,14 +172,6 @@ const MultiviewRecord: React.FC = () => {
             </TransformWrapper>;
         setVideo4(v4);
 
-    }, []);
-
-    useEffect(() => {
-        axios.get("/get-all-cb-data").then(res => {
-            if (res.status === 200) {
-                setCombobox(res.data);
-            }
-        }).catch(error => console.log(error));
     }, []);
 
     const tipFormatter = (value: number | undefined) => {
@@ -402,7 +380,6 @@ const MultiviewRecord: React.FC = () => {
                 </React.Fragment>
             </TransformWrapper>;
         setVideo4(v4);
-        setIdSelected(VIDEO_1_ID);
     };
 
     const handleClickVideo2 = (event: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
@@ -475,7 +452,6 @@ const MultiviewRecord: React.FC = () => {
                 </React.Fragment>
             </TransformWrapper>;
         setVideo4(v4);
-        setIdSelected(VIDEO_2_ID);
     };
 
     const handleClickVideo3 = (event: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
@@ -548,7 +524,6 @@ const MultiviewRecord: React.FC = () => {
                 </React.Fragment>
             </TransformWrapper>;
         setVideo4(v4);
-        setIdSelected(VIDEO_3_ID);
     };
 
     const handleClickVideo4 = (event: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
@@ -621,73 +596,6 @@ const MultiviewRecord: React.FC = () => {
                 </React.Fragment>
             </TransformWrapper>;
         setVideo3(v3);
-        setIdSelected(VIDEO_4_ID);
-    };
-
-    const setComboboxSelected = (data) => {
-        setCbSelected(data);
-    };
-
-    const onChangeDate = (dates) => {
-        const [start, end] = dates;
-        setStartDate(start);
-        setEndDate(end);
-    };
-
-    const onSelectedRow = (index: number) => {
-        setSelectedRow(index);
-    };
-
-    const onSearch = () => {
-        let dataSearch = {
-            startDate: startDate,
-            endDate: endDate,
-            comboBoxSelected: comboboxSelected
-        };
-        axios({
-            method: "post",
-            url: "/search",
-            data: JSON.stringify(dataSearch),
-            headers: { "Content-Type": "application/json" }
-        })
-            .then(function(response) {
-                if (response.status === 200) {
-                    setDataSearch(response.data);
-                    setElementSearch(<TableCommon colName={TABLE_HEADER_RECORD} colSize={["2em", "2em"]}
-                                                  selectedIndex={selectedRow} data={response.data}
-                                                  onSelected={onSelectedRow} />);
-                }
-            })
-            .catch(function(err) {
-                console.log(err);
-            });
-    };
-
-    const loadPlayer = () => {
-        const fileName = dataSearch[selectedRow].fileName;
-        const filePath = dataSearch[selectedRow].url;
-        axios({
-            method: "post",
-            url: "/get-thumbnail",
-            data: JSON.stringify({ fileName: fileName, filePath: filePath }),
-            headers: { "Content-Type": "application/json" }
-        })
-            .then(function(response) {
-                if (response.status === 200) {
-                    console.log(response.data);
-                    setThumbnailData(response.data);
-                    let thumb = [];
-                    response.data.forEach((item, i) => {
-                        thumb.push(
-                            <img key={i} src={item} className={"i-thumbnail"} />
-                        );
-                    });
-                    setThumbnailImg(<div className={"row col-12"}>{thumb}</div>);
-                }
-            })
-            .catch(function(err) {
-                console.log(err);
-            });
     };
 
     return (
@@ -902,36 +810,7 @@ const MultiviewRecord: React.FC = () => {
                                 </Row>
                             </div>
                         </div>
-                        <div className={"search-menu-container"}>
-                            <div className={"search-menu"}>
-                                <div className={"row col-12 mt-2"}>
-                                    <label className={"col-4 text-white"}>Pick camera</label>
-                                    <MultiSelect
-                                        options={comboboxValue}
-                                        value={comboboxSelected}
-                                        onChange={setComboboxSelected}
-                                        labelledBy="Select"
-                                        className={"col-8"}
-                                    />
-                                </div>
-                                <div className={"d-flex justify-content-center mt-2"}>
-                                    <ReactDatePicker
-                                        selected={startDate}
-                                        onChange={onChangeDate}
-                                        startDate={startDate}
-                                        endDate={endDate}
-                                        selectsRange
-                                        inline
-                                    />
-                                </div>
-                                <button className={"btn btn-primary"} onClick={onSearch}>Search</button>
-                                <div className={"col-12"}>
-                                    {elementSearch}
-                                </div>
-                                <button className={"btn btn-primary"} onClick={loadPlayer}>Play</button>
-                                {thumbnailImg}
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             }
