@@ -2,11 +2,12 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./index.css";
 import Page from "../../components/Page";
-import { Button, Col, Menu, MenuProps, Row, Select } from "antd";
+import { Button, Col, Menu, MenuProps, Row } from "antd";
 import { useAppDispatch } from "../../store/hooks";
 import WebrtcPlayer from "../../components/WebrtcPlayer";
 import { CaretDownOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import MenuCamera from "../../components/common/MenuCamera";
+import Select from "react-select";
 
 const ONE_STREAM = "1";
 const FOUR_STREAM = "2";
@@ -21,6 +22,9 @@ const LiveView: React.FC = () => {
         isNotNull: boolean;
     }>({ mouseX: 0, mouseY: 0, isNotNull: false });
     const [viewMode, setViewMode] = useState<string>(FOUR_STREAM);
+    const [selectedStream, setSelectedStream] = useState<number>(1);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [currentProfile, setCurrentProfile] = useState<number>(1);
 
     const rootSubmenuKeys = ["search", "setting", "recorder", "maintenance"];
     let videoContainerRef = useRef(null);
@@ -110,6 +114,15 @@ const LiveView: React.FC = () => {
         }
     ];
 
+    const layoutProfiles = [
+        { value: 1, label: "1." },
+        { value: 2, label: "2." },
+        { value: 3, label: "3." },
+        { value: 5, label: "5." },
+        { value: 6, label: "6." },
+        { value: 7, label: "7." }
+    ];
+
     const onOpenChange: MenuProps["onOpenChange"] = keys => {
         const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
         if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
@@ -119,10 +132,12 @@ const LiveView: React.FC = () => {
         }
     };
 
-    const handleContextMenu = (event: React.MouseEvent) => {
+    const handleContextMenu = (event: React.MouseEvent, streamPosition: number) => {
         event.preventDefault();
+        const changeCam = selectedStream != streamPosition;
+        setSelectedStream(streamPosition);
         setContextMenu(
-            !contextMenu.isNotNull
+            (!contextMenu.isNotNull || (contextMenu.isNotNull && changeCam))
                 ? {
                     mouseX: event.clientX + 2,
                     mouseY: event.clientY - 6,
@@ -187,14 +202,14 @@ const LiveView: React.FC = () => {
                         <div className="recording-status">
                             <img className="icon-22" src="/icons/recording.png" />
                         </div>
-                        <div ref={videoContainerRef} className="video-container" style={{width: 1280, height: 720}}>
+                        <div ref={videoContainerRef} className="video-container" style={{ width: 1280, height: 720 }}>
                             <div id="block1" className={"space-align-block " + setBlockSize(1)}>
                                 <WebrtcPlayer
                                     url={`${process.env.REACT_APP_LIVE_SERVER_HOST}/stream/41251ba0-be89-457f-8b1a-3f6a4ddaaedf/channel/0/webrtc?uuid=41251ba0-be89-457f-8b1a-3f6a4ddaaedf&channel=0`}
-                                    style={{ border: "solid 1px #f15a24" }}
+                                    style={{ border: selectedStream == 1 ? "solid 2px #f15a24" : "none" }}
                                     width={setWidth(1)}
                                     height={setHeight(1)}
-                                    onClick={handleContextMenu}
+                                    onClick={(e) => handleContextMenu(e, 1)}
                                 />
                             </div>
 
@@ -202,30 +217,30 @@ const LiveView: React.FC = () => {
                                 (<div id="block2" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
                                         url={`${process.env.REACT_APP_LIVE_SERVER_HOST}/stream/bff3a176-a0ad-4778-9b55-1406d1cefa9e/channel/0/webrtc?uuid=bff3a176-a0ad-4778-9b55-1406d1cefa9e&channel=0`}
-                                        style={{ border: "solid 1px grey" }}
+                                        style={{ border: selectedStream == 2 ? "solid 2px #f15a24" : "none" }}
                                         width={setWidth()}
                                         height={setHeight()}
-                                        onClick={handleContextMenu}
+                                        onClick={(e) => handleContextMenu(e, 2)}
                                     />
                                 </div>) : null}
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block3" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
                                         url={`${process.env.REACT_APP_LIVE_SERVER_HOST}/stream/eaf6861d-8acd-4d00-b909-dba68be9832d/channel/0/webrtc?uuid=eaf6861d-8acd-4d00-b909-dba68be9832d&channel=0`}
-                                        style={{ border: "solid 1px grey" }}
+                                        style={{ border: selectedStream == 3 ? "solid 2px #f15a24" : "none" }}
                                         width={setWidth()}
                                         height={setHeight()}
-                                        onClick={handleContextMenu}
+                                        onClick={(e) => handleContextMenu(e, 3)}
                                     />
                                 </div>) : null}
                             {(viewMode != ONE_STREAM) ?
                                 (<div id="block4" className={"space-align-block " + setBlockSize()}>
                                     <WebrtcPlayer
                                         url={`${process.env.REACT_APP_LIVE_SERVER_HOST}/stream/6279629d-eb8e-4b87-a03f-43adb05f2ecc/channel/0/webrtc?uuid=6279629d-eb8e-4b87-a03f-43adb05f2ecc&channel=0`}
-                                        style={{ border: "solid 1px grey" }}
+                                        style={{ border: selectedStream == 4 ? "solid 2px #f15a24" : "none" }}
                                         width={setWidth()}
                                         height={setHeight()}
-                                        onClick={handleContextMenu}
+                                        onClick={(e) => handleContextMenu(e, 4)}
                                     />
                                 </div>) : null}
                         </div>
@@ -381,6 +396,13 @@ const LiveView: React.FC = () => {
 
                                 {openSelectLayoutCustomize && openLayoutMenu ?
                                     <div className="select-layout-customize">
+                                        {/*<Select*/}
+                                        {/*    menuIsOpen={true}*/}
+                                        {/*    defaultValue={currentProfile}*/}
+                                        {/*    onChange={setCurrentProfile}*/}
+                                        {/*    options={layoutProfiles}*/}
+                                        {/*    maxMenuHeight={96}*/}
+                                        {/*/>*/}
                                         <Row style={{ height: 32, alignContent: "center" }}>
                                             <div className="setting-layout-customize-info">
                                                 1.

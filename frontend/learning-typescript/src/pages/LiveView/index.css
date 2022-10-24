@@ -78,6 +78,7 @@
 }
 
 .select-layout-customize {
+    user-select: none;
     background: #3d383c;
     width: 53px;
     height: 128px;
