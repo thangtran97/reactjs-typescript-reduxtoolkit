@@ -13,4 +13,5 @@ cp -a ./scripts/. /usr/bin/; chmod 755 /usr/bin/*-exec.sh && \
 cp -a ./services/. /lib/systemd/system/ && \
 unlink /etc/nginx/sites-enabled/* && \
 cp -a reactjs-app /etc/nginx/sites-available/; \
-ln -s /etc/nginx/sites-available/reactjs-app /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/reactjs-app /etc/nginx/sites-enabled/; \
+cd /usr/nvr-app/golang_app; go build
